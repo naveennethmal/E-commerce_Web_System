@@ -1,0 +1,47 @@
+<section id="home-view" class="page-view active">
+  <div class="home-hero-banner">
+    <div class="home-hero-content">
+      <h1 class="home-hero-title">
+        Order Your <span>Favorite Food</span>
+      </h1>
+      <p class="home-hero-desc">
+        Delicious meals from the best restaurants, delivered to your doorstep fast and fresh.
+      </p>
+      <button class="btn-hero-cta" onclick="handleHeroCtaClick()">
+        Order Now →
+      </button>
+    </div>
+    <div class="home-hero-graphic">
+      <img src="../images/hero_banner.jpg" alt="Juicy Burger and Fries" onerror="this.src='https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80'" />
+    </div>
+  </div>
+
+  <div class="home-section-header">
+    <h2 class="home-section-title">Food Categories</h2>
+    <a href="../index.html#menu" class="view-all-link" onclick="if(window.router) router.navigateTo('menu')">View All →</a>
+  </div>
+  <div class="categories-bar-wrapper">
+    <div class="categories-bar" id="home-categories-list">
+    </div>
+  </div>
+
+  <div class="home-section-header" style="margin-top: 32px;">
+    <h2 class="home-section-title">Featured Foods</h2>
+    <a href="../index.html#menu" class="view-all-link" onclick="if(window.router) router.navigateTo('menu')">View All →</a>
+  </div>
+  <div class="filter-tabs-row" id="home-filter-tabs">
+    <button class="filter-tab-pill active" onclick="filterHomeCategory('all', this)">All</button>
+    <button class="filter-tab-pill" onclick="filterHomeCategory('burgers', this)">Burgers</button>
+    <button class="filter-tab-pill" onclick="filterHomeCategory('pizza', this)">Pizza</button>
+    <button class="filter-tab-pill" onclick="filterHomeCategory('chicken', this)">Chicken</button>
+    <button class="filter-tab-pill" onclick="filterHomeCategory('drinks', this)">Drinks</button>
+  </div>
+  <div class="food-cards-grid" id="featured-foods-grid">
+  </div>
+
+  <div class="home-carousel-dots">
+    <span class="dot active" onclick="switchHomeSlide(0)"></span>
+    <span class="dot" onclick="switchHomeSlide(1)"></span>
+    <span class="dot" onclick="switchHomeSlide(2)"></span>
+  </div>
+</section>
