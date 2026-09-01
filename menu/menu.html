@@ -1,0 +1,111 @@
+<!-- Menu Section View Component -->
+<section id="menu-view" class="page-view menu-page-wrapper">
+  <!-- Menu Header / Hero Banner -->
+  <div class="menu-hero-banner">
+    <div class="menu-hero-overlay"></div>
+    <div class="menu-hero-content">
+      <span class="menu-hero-tag"><i class="fa-solid fa-fire"></i> Fresh & Hot</span>
+      <h1 class="menu-hero-title">Explore Our <span>Delicious Menu</span></h1>
+      <p class="menu-hero-desc">Discover our hand-crafted burgers, artisanal pizzas, crispy fried chicken, refreshing drinks, and delectable desserts.</p>
+    </div>
+  </div>
+
+  <!-- Search & Filter Controls Bar -->
+  <div class="menu-controls-card">
+    <!-- Search Bar -->
+    <div class="menu-search-box">
+      <i class="fa-solid fa-magnifying-glass search-icon"></i>
+      <input type="text" id="menu-search-input" placeholder="Search menu items (e.g. burger, pizza, coke)..." autocomplete="off" />
+      <button type="button" id="menu-search-clear" class="btn-clear-search" style="display:none;" title="Clear search">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <!-- Filter & Sort Bar -->
+    <div class="menu-filter-toolbar">
+      <!-- Sorting Dropdown -->
+      <div class="menu-sort-wrapper">
+        <label for="menu-sort-select"><i class="fa-solid fa-arrow-down-short-wide"></i> Sort By:</label>
+        <select id="menu-sort-select" class="menu-select">
+          <option value="popular">Popularity / Featured</option>
+          <option value="rating-desc">Highest Rated</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="name-asc">Name: A to Z</option>
+        </select>
+      </div>
+
+      <!-- Quick Option Toggles -->
+      <div class="menu-toggle-filters">
+        <button type="button" class="menu-toggle-btn" id="filter-spicy-toggle" onclick="toggleSpicyFilter()">
+          <i class="fa-solid fa-pepper-hot"></i> Spicy Only
+        </button>
+        <button type="button" class="menu-toggle-btn" id="filter-discount-toggle" onclick="toggleDiscountFilter()">
+          <i class="fa-solid fa-tag"></i> Special Offers
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Food Categories Horizontal Scroll Bar -->
+  <div class="categories-section-wrapper">
+    <div class="categories-bar-wrapper">
+      <div class="categories-bar" id="menu-categories-list">
+        <!-- Rendered dynamically by menu.js -->
+        <button class="category-pill active" onclick="selectMenuCategory('all', this)">
+          <span class="category-icon">🍽️</span>
+          <span class="category-label">All Items</span>
+        </button>
+        <button class="category-pill" onclick="selectMenuCategory('burgers', this)">
+          <span class="category-icon">🍔</span>
+          <span class="category-label">Burgers</span>
+        </button>
+        <button class="category-pill" onclick="selectMenuCategory('pizza', this)">
+          <span class="category-icon">🍕</span>
+          <span class="category-label">Pizza</span>
+        </button>
+        <button class="category-pill" onclick="selectMenuCategory('chicken', this)">
+          <span class="category-icon">🍗</span>
+          <span class="category-label">Fried Chicken</span>
+        </button>
+        <button class="category-pill" onclick="selectMenuCategory('drinks', this)">
+          <span class="category-icon">🥤</span>
+          <span class="category-label">Drinks &amp; Beverages</span>
+        </button>
+        <button class="category-pill" onclick="selectMenuCategory('desserts', this)">
+          <span class="category-icon">🧁</span>
+          <span class="category-label">Desserts</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Status / Items Counter Header -->
+  <div class="menu-status-bar">
+    <div class="menu-results-count" id="menu-results-count">
+      Showing <strong>0</strong> delicious options
+    </div>
+    <div class="menu-active-filters-chips" id="active-filter-chips">
+      <!-- Active filter badges appear here -->
+    </div>
+  </div>
+
+  <!-- Food Items Grid -->
+  <div class="food-cards-grid" id="menu-foods-grid">
+    <!-- Dynamic food cards loaded by menu.js -->
+    <div class="menu-loading-spinner">
+      <div class="spinner-ring"></div>
+      <p>Loading mouth-watering food items...</p>
+    </div>
+  </div>
+
+  <!-- Food Item Quick View Modal -->
+  <div class="modal-overlay" id="menu-item-modal" style="display:none;" onclick="closeMenuModal(event)">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="closeMenuModal()"><i class="fa-solid fa-xmark"></i></button>
+      <div class="modal-body-layout" id="modal-content-area">
+        <!-- Rendered via menu.js -->
+      </div>
+    </div>
+  </div>
+</section>

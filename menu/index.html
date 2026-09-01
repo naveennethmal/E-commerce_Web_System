@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu - Food Express</title>
+  <meta name="description"
+    content="Explore the full delicious menu at Food Express. Order burgers, pizza, crispy chicken, rice bowls, drinks, and desserts for fast delivery." />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/pages.css" />
+  <link rel="stylesheet" href="menu.css" />
+</head>
+
+<body>
+  <div class="app-container">
+
+    <!-- Header Navigation -->
+    <header class="site-header">
+      <div class="header-container">
+        <a href="../index.html#home" class="brand-logo">
+          <div class="brand-icon-wrap">
+            <svg class="brand-svg-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="logoBg" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#FF9E00" />
+                  <stop offset="50%" stop-color="#E85D04" />
+                  <stop offset="100%" stop-color="#DC2626" />
+                </linearGradient>
+                <linearGradient id="chefHatGrad" x1="0" y1="0" x2="0" y2="100%">
+                  <stop offset="0%" stop-color="#FFFFFF" />
+                  <stop offset="100%" stop-color="#FFF3C4" />
+                </linearGradient>
+                <linearGradient id="boltGrad" x1="0" y1="0" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#FFEA00" />
+                  <stop offset="100%" stop-color="#FF9E00" />
+                </linearGradient>
+              </defs>
+              <rect width="44" height="44" rx="13" fill="url(#logoBg)" />
+              <rect x="0.5" y="0.5" width="43" height="43" rx="12.5" stroke="white" stroke-opacity="0.25" />
+              <path
+                d="M14.5 18C14.5 15.7909 16.2909 14 18.5 14C19.2483 14 19.9482 14.2057 20.5484 14.5638C21.4391 13.5939 22.7231 13 24 13C25.2769 13 26.5609 13.5939 27.4516 14.5638C28.0518 14.2057 28.7517 14 29.5 14C31.7091 14 33.5 15.7909 33.5 18C33.5 19.1245 33.0371 20.141 32.2909 20.8718C32.7423 21.6703 33 22.5839 33 23.5C33 25.433 31.433 27 29.5 27H18.5C16.567 27 15 25.433 15 23.5C15 22.5839 15.2577 21.6703 15.7091 20.8718C14.9629 20.141 14.5 19.1245 14.5 18Z"
+                fill="url(#chefHatGrad)" />
+              <path
+                d="M16.5 27.5H31.5V30.5C31.5 31.6046 30.6046 32.5 29.5 32.5H18.5C17.3954 32.5 16.5 31.6046 16.5 30.5V27.5Z"
+                fill="url(#chefHatGrad)" />
+              <path d="M26 21L20.5 28.5H24.5L23 34L28.5 26.5H24.5L26 21Z" fill="url(#boltGrad)" />
+            </svg>
+          </div>
+          <div class="brand-info">
+            <div class="brand-name-row">
+              <span class="brand-name-food">Food</span>
+              <span class="brand-name-express">Express</span>
+              <span class="brand-speed-tag"><i class="fa-solid fa-bolt"></i></span>
+            </div>
+            <span class="brand-slogan"><span class="slogan-pulse"></span> DELICIOUS & FAST DELIVERY</span>
+          </div>
+        </a>
+
+        <nav class="nav-menu">
+          <a href="../home/index.html" class="nav-link">
+            <span><i class="fa-solid fa-house"></i></span> Home
+          </a>
+          <a href="index.html" class="nav-link active">
+            <span><i class="fa-solid fa-utensils"></i></span> Menu
+          </a>
+          <a href="../index.html#offers" class="nav-link">
+            <span><i class="fa-solid fa-tags"></i></span> Offers
+          </a>
+          <a href="../index.html#about" class="nav-link">
+            <span><i class="fa-solid fa-info-circle"></i></span> About
+          </a>
+          <a href="../pages/contact.html" class="nav-link">
+            <span><i class="fa-solid fa-envelope"></i></span> Contact
+          </a>
+          <a href="../index.html#cart" class="nav-link">
+            <span><i class="fa-solid fa-cart-shopping"></i></span> Cart
+          </a>
+        </nav>
+
+        <div class="header-right-actions">
+          <a href="../pages/login.html" class="login-btn-link">
+            <i class="fa-solid fa-user"></i> Login
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="main-content" style="padding: 24px 20px;">
+      <section id="menu-view" class="page-view active menu-page-wrapper">
+        <!-- Hero Banner -->
+        <div class="menu-hero-banner">
+          <div class="menu-hero-overlay"></div>
+          <div class="menu-hero-content">
+            <span class="menu-hero-tag"><i class="fa-solid fa-fire"></i> Fresh & Hot</span>
+            <h1 class="menu-hero-title">Explore Our <span>Delicious Menu</span></h1>
+            <p class="menu-hero-desc">Discover our hand-crafted burgers, artisanal pizzas, crispy fried chicken, refreshing drinks, and delectable desserts.</p>
+          </div>
+        </div>
+
+        <!-- Controls Bar -->
+        <div class="menu-controls-card">
+          <div class="menu-search-box">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" id="menu-search-input" placeholder="Search menu items (e.g. burger, pizza, coke)..." autocomplete="off" />
+            <button type="button" id="menu-search-clear" class="btn-clear-search" style="display:none;" title="Clear search">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+
+          <div class="menu-filter-toolbar">
+            <div class="menu-sort-wrapper">
+              <label for="menu-sort-select"><i class="fa-solid fa-arrow-down-short-wide"></i> Sort By:</label>
+              <select id="menu-sort-select" class="menu-select">
+                <option value="popular">Popularity / Featured</option>
+                <option value="rating-desc">Highest Rated</option>
+                <option value="price-asc">Price: Low to High</option>
+                <option value="price-desc">Price: High to Low</option>
+                <option value="name-asc">Name: A to Z</option>
+              </select>
+            </div>
+
+            <div class="menu-toggle-filters">
+              <button type="button" class="menu-toggle-btn" id="filter-spicy-toggle" onclick="toggleSpicyFilter()">
+                <i class="fa-solid fa-pepper-hot"></i> Spicy Only
+              </button>
+              <button type="button" class="menu-toggle-btn" id="filter-discount-toggle" onclick="toggleDiscountFilter()">
+                <i class="fa-solid fa-tag"></i> Special Offers
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Categories Scroll -->
+        <div class="categories-section-wrapper">
+          <div class="categories-bar-wrapper">
+            <div class="categories-bar" id="menu-categories-list">
+            </div>
+          </div>
+        </div>
+
+        <!-- Results Counter -->
+        <div class="menu-status-bar">
+          <div class="menu-results-count" id="menu-results-count">
+            Showing <strong>0</strong> delicious options
+          </div>
+          <div class="menu-active-filters-chips" id="active-filter-chips">
+          </div>
+        </div>
+
+        <!-- Foods Grid -->
+        <div class="food-cards-grid" id="menu-foods-grid">
+          <div class="menu-loading-spinner">
+            <div class="spinner-ring"></div>
+            <p>Loading mouth-watering menu items...</p>
+          </div>
+        </div>
+
+        <!-- Quick View Modal -->
+        <div class="modal-overlay" id="menu-item-modal" style="display:none;" onclick="closeMenuModal(event)">
+          <div class="modal-card" onclick="event.stopPropagation()">
+            <button class="modal-close-btn" onclick="closeMenuModal()"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-body-layout" id="modal-content-area">
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-col brand-col">
+          <div class="brand-logo">
+            <span class="brand-name-food">Food</span>
+            <span class="brand-name-express">Express</span>
+          </div>
+          <p class="footer-about-text">
+            Delivering hot, delicious meals to your doorstep within minutes. Quality ingredients, fast service.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="../home/index.html">Home</a></li>
+            <li><a href="index.html">Menu</a></li>
+            <li><a href="../index.html#offers">Offers</a></li>
+            <li><a href="../index.html#about">About Us</a></li>
+            <li><a href="../pages/contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Customer Care</h4>
+          <ul>
+            <li><a href="../pages/orders.html">My Orders</a></li>
+            <li><a href="../pages/profile.html">My Account</a></li>
+            <li><a href="../pages/favorites.html">Favorites</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Food Express. All rights reserved.</p>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="../js/data.js"></script>
+  <script src="../js/cart.js"></script>
+  <script src="menu.js"></script>
+</body>
+
+</html>
