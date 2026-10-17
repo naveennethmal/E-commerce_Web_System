@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard - Food Express</title>
+  <meta name="description" content="Food Express Admin Panel - Manage menu items, categories, customer orders, and sales performance." />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+
+  <!-- Top Header Bar -->
+  <header class="admin-header">
+    <a href="index.html" class="admin-brand" style="cursor:pointer; display:flex; align-items:center; gap:12px; text-decoration:none;" title="Food Express Admin Dashboard">
+      <div class="brand-icon-wrap" style="width:44px; height:44px; flex-shrink:0;">
+        <svg class="brand-svg-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:44px; height:44px;">
+          <defs>
+            <linearGradient id="logoBgAdmin" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#FF9E00" />
+              <stop offset="50%" stop-color="#E85D04" />
+              <stop offset="100%" stop-color="#DC2626" />
+            </linearGradient>
+            <linearGradient id="chefHatGradAdmin" x1="0" y1="0" x2="0" y2="100%">
+              <stop offset="0%" stop-color="#FFFFFF" />
+              <stop offset="100%" stop-color="#FFF3C4" />
+            </linearGradient>
+            <linearGradient id="boltGradAdmin" x1="0" y1="0" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#FFEA00" />
+              <stop offset="100%" stop-color="#FF9E00" />
+            </linearGradient>
+          </defs>
+          <rect width="44" height="44" rx="13" fill="url(#logoBgAdmin)" />
+          <rect x="0.5" y="0.5" width="43" height="43" rx="12.5" stroke="white" stroke-opacity="0.25" />
+          <path
+            d="M14.5 18C14.5 15.7909 16.2909 14 18.5 14C19.2483 14 19.9482 14.2057 20.5484 14.5638C21.4391 13.5939 22.7231 13 24 13C25.2769 13 26.5609 13.5939 27.4516 14.5638C28.0518 14.2057 28.7517 14 29.5 14C31.7091 14 33.5 15.7909 33.5 18C33.5 19.1245 33.0371 20.141 32.2909 20.8718C32.7423 21.6703 33 22.5839 33 23.5C33 25.433 31.433 27 29.5 27H18.5C16.567 27 15 25.433 15 23.5C15 22.5839 15.2577 21.6703 15.7091 20.8718C14.9629 20.141 14.5 19.1245 14.5 18Z"
+            fill="url(#chefHatGradAdmin)" />
+          <path
+            d="M16.5 27.5H31.5V30.5C31.5 31.6046 30.6046 32.5 29.5 32.5H18.5C17.3954 32.5 16.5 31.6046 16.5 30.5V27.5Z"
+            fill="url(#chefHatGradAdmin)" />
+          <path d="M26 21L20.5 28.5H24.5L23 34L28.5 26.5H24.5L26 21Z" fill="url(#boltGradAdmin)" />
+        </svg>
+      </div>
+      <div class="brand-info" style="display:flex; flex-direction:column; justify-content:center;">
+        <div class="brand-name-row" style="display:flex; align-items:center; gap:4px; line-height:1.1;">
+          <span class="brand-name-food" style="font-size:22px; font-weight:800; color:#FFFFFF; letter-spacing:-0.5px;">Food</span>
+          <span class="brand-name-express" style="font-size:22px; font-weight:800; background:linear-gradient(90deg, #FFEA00, #FF9E00); -webkit-background-clip:text; -webkit-text-fill-color:transparent; letter-spacing:-0.5px;">Express</span>
+          <span class="brand-speed-tag" style="color:#FFFFFF; font-size:14px; margin-left:2px;"><i class="fa-solid fa-bolt"></i></span>
+        </div>
+        <span class="brand-slogan" style="font-size:10px; font-weight:700; color:rgba(255,255,255,0.75); letter-spacing:0.8px; margin-top:3px; display:flex; align-items:center; gap:5px; text-transform:uppercase;">
+          <span class="slogan-pulse" style="width:7px; height:7px; background:#10B981; border-radius:50%; display:inline-block; box-shadow:0 0 8px #10B981;"></span> DELICIOUS &amp; FAST DELIVERY
+        </span>
+      </div>
+    </a>
+
+    <div class="admin-header-right" style="position:relative;">
+      <div class="admin-user-menu" id="admin-user-dropdown" style="cursor:pointer;" title="Admin Profile & Settings">
+        <div class="admin-avatar-circle">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+          </svg>
+        </div>
+        <span class="admin-user-name" id="admin-display-name">Admin User</span>
+        <span class="admin-dropdown-arrow"><i class="fa-solid fa-chevron-down"></i></span>
+      </div>
+
+      <!-- Dropdown Menu Popup -->
+      <div class="admin-dropdown-menu" id="admin-profile-popup" style="display:none; position:absolute; top:calc(100% + 10px); right:0; width:220px; background:#FFFFFF; border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,0.18); border:1px solid #E2E8F0; z-index:999; padding:10px 0;">
+        <div style="padding:10px 16px 12px; border-bottom:1px solid #F1F5F9;">
+          <strong style="display:block; font-size:14px; color:#0F172A;" id="dropdown-admin-name">Admin User</strong>
+          <span style="font-size:12px; color:#64748B;">System Administrator</span>
+        </div>
+        <div style="padding:6px 0;">
+          <a href="#" onclick="event.preventDefault(); document.querySelector('[data-view=dashboard]')?.click(); closeAdminProfileDropdown();" style="display:flex; align-items:center; gap:10px; padding:10px 16px; color:#334155; text-decoration:none; font-size:13.5px; font-weight:600; transition:0.2s;" onmouseover="this.style.background='#F8FAFC'" onmouseout="this.style.background='transparent'">
+            <i class="fa-solid fa-gauge" style="color:#64748B;"></i> Dashboard
+          </a>
+          <a href="#" onclick="event.preventDefault(); document.querySelector('[data-view=food-items]')?.click(); closeAdminProfileDropdown();" style="display:flex; align-items:center; gap:10px; padding:10px 16px; color:#334155; text-decoration:none; font-size:13.5px; font-weight:600; transition:0.2s;" onmouseover="this.style.background='#F8FAFC'" onmouseout="this.style.background='transparent'">
+            <i class="fa-solid fa-utensils" style="color:#64748B;"></i> Manage Menu
+          </a>
+          <a href="#" onclick="event.preventDefault(); document.querySelector('[data-view=orders]')?.click(); closeAdminProfileDropdown();" style="display:flex; align-items:center; gap:10px; padding:10px 16px; color:#334155; text-decoration:none; font-size:13.5px; font-weight:600; transition:0.2s;" onmouseover="this.style.background='#F8FAFC'" onmouseout="this.style.background='transparent'">
+            <i class="fa-solid fa-bag-shopping" style="color:#64748B;"></i> View Orders
+          </a>
+          <a href="../index.html" style="display:flex; align-items:center; gap:10px; padding:10px 16px; color:#334155; text-decoration:none; font-size:13.5px; font-weight:600; transition:0.2s;" onmouseover="this.style.background='#F8FAFC'" onmouseout="this.style.background='transparent'">
+            <i class="fa-solid fa-store" style="color:#64748B;"></i> Main Website
+          </a>
+        </div>
+        <div style="border-top:1px solid #F1F5F9; padding-top:6px; margin-top:2px;">
+          <a href="#" onclick="event.preventDefault(); handleAdminLogout();" style="display:flex; align-items:center; gap:10px; padding:10px 16px; color:#EF4444; text-decoration:none; font-size:13.5px; font-weight:700; transition:0.2s;" onmouseover="this.style.background='#FEF2F2'" onmouseout="this.style.background='transparent'">
+            <i class="fa-solid fa-right-from-bracket" style="color:#EF4444;"></i> Logout Account
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container Layout -->
+  <div class="admin-container">
+    
+    <!-- Left Navigation Sidebar -->
+    <aside class="admin-sidebar">
+      <button class="sidebar-link active" data-view="dashboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+          <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </svg>
+        <span>Dashboard</span>
+      </button>
+
+      <button class="sidebar-link" data-view="food-items">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+          <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+          <line x1="6" y1="1" x2="6" y2="4"></line>
+          <line x1="10" y1="1" x2="10" y2="4"></line>
+          <line x1="14" y1="1" x2="14" y2="4"></line>
+        </svg>
+        <span>Food Items</span>
+      </button>
+
+      <button class="sidebar-link" data-view="categories">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+        </svg>
+        <span>Categories</span>
+      </button>
+
+      <button class="sidebar-link" data-view="orders">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <path d="M16 10a4 4 0 0 1-8 0"></path>
+        </svg>
+        <span>Orders</span>
+      </button>
+
+      <button class="sidebar-link" data-view="customers">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+          <circle cx="9" cy="7" r="4"></circle>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+        </svg>
+        <span>Customers</span>
+      </button>
+
+      <button class="sidebar-link" data-view="offers">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+          <line x1="7" y1="7" x2="7.01" y2="7"></line>
+        </svg>
+        <span>Offers</span>
+      </button>
+
+      <button class="sidebar-link" data-view="messages">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+        <span>Messages</span>
+        <span class="admin-sidebar-badge" id="sidebar-messages-count" style="display:none;">0</span>
+      </button>
+
+      <button class="sidebar-link" data-view="logout" style="margin-top: auto;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+          <polyline points="16 17 21 12 16 7"></polyline>
+          <line x1="21" y1="12" x2="9" y2="12"></line>
+        </svg>
+        <span>Logout</span>
+      </button>
+    </aside>
+
+    <!-- Right Main Content Panel -->
+    <main class="admin-main-content">
+
+      <!-- VIEW 1: DASHBOARD MAIN -->
+      <section class="admin-view-panel active" id="view-dashboard">
+        
+        <!-- Page Title Header -->
+        <div class="page-header-row">
+          <h2 class="page-title">Admin Dashboard</h2>
+          <p class="page-subtitle">Welcome to Food Express Admin Panel</p>
+        </div>
+
+        <!-- 4 Analytics Stat Cards Row -->
+        <div class="stats-cards-grid">
+          
+          <!-- Card 1: Total Food Items -->
+          <div class="stat-card red-card">
+            <div class="stat-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                <line x1="6" y1="1" x2="6" y2="4"></line>
+                <line x1="10" y1="1" x2="10" y2="4"></line>
+                <line x1="14" y1="1" x2="14" y2="4"></line>
+              </svg>
+            </div>
+            <div class="stat-details">
+              <span class="stat-label">Total Food Items</span>
+              <span class="stat-value" id="stat-food-count">24</span>
+            </div>
+          </div>
+
+          <!-- Card 2: Total Orders -->
+          <div class="stat-card green-card">
+            <div class="stat-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+                <path d="M9 14l2 2 4-4"></path>
+              </svg>
+            </div>
+            <div class="stat-details">
+              <span class="stat-label">Total Orders</span>
+              <span class="stat-value" id="stat-orders-count">18</span>
+            </div>
+          </div>
+
+          <!-- Card 3: Total Customers -->
+          <div class="stat-card blue-card">
+            <div class="stat-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <div class="stat-details">
+              <span class="stat-label">Total Customers</span>
+              <span class="stat-value" id="stat-customers-count">12</span>
+            </div>
+          </div>
+
+          <!-- Card 4: Total Sales Revenue -->
+          <div class="stat-card">
+            <div class="stat-icon-wrap" style="background-color:#DCFCE7; color:#16A34A;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="1" x2="12" y2="23"></line>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+              </svg>
+            </div>
+            <div class="stat-details">
+              <span class="stat-label">Total Sales</span>
+              <h3 class="stat-value" id="stat-total-sales">Rs. 0.00</h3>
+            </div>
+          </div>
+
+          <!-- Card 5: Customer Messages -->
+          <div class="stat-card" style="cursor:pointer;" onclick="document.querySelector('[data-view=messages]')?.click();">
+            <div class="stat-icon-wrap" style="background-color:#E0F2FE; color:#0284C7;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+              </svg>
+            </div>
+            <div class="stat-details">
+              <span class="stat-label">Customer Messages</span>
+              <h3 class="stat-value" id="stat-messages-count">0 Total</h3>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- 2-Column Widgets Grid -->
+        <div class="widgets-grid">
+          
+          <!-- Widget Left: Recent Orders Table -->
+          <div class="widget-card">
+            <div class="widget-header">
+              <h3 class="widget-title">Recent Orders</h3>
+              <a href="#" class="widget-action-link" onclick="document.querySelector('[data-view=orders]').click(); return false;">View All</a>
+            </div>
+
+            <div class="data-table-wrapper">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Order ID</th>
+                    <th>Customer</th>
+                    <th>Status</th>
+                    <th>Total</th>
+                  </tr>
+                </thead>
+                <tbody id="recent-orders-tbody">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Widget Right: Sales Overview Chart -->
+          <div class="widget-card sales-overview-card" style="background:#FFFFFF; border-radius:18px; padding:24px; box-shadow:0 4px 20px rgba(0,0,0,0.05); border:1px solid #E2E8F0;">
+            <div class="widget-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; border:none; padding:0;">
+              <h3 class="widget-title" style="font-size:20px; font-weight:800; color:#0F172A; margin:0;">Sales Overview</h3>
+              <div class="chart-legend-badge" style="display:flex; align-items:center; gap:8px; font-size:13px; font-weight:600; color:#475569;">
+                <span style="width:12px; height:12px; background:#FF3B30; border-radius:3px; display:inline-block;"></span>
+                <span>Sales</span>
+              </div>
+            </div>
+
+            <div class="chart-container-wrapper" style="position:relative; width:100%; height:260px;">
+              <canvas id="salesOverviewChart"></canvas>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- VIEW 2: FOOD ITEMS -->
+      <section class="admin-view-panel" id="view-food-items">
+        <div class="page-header-row" style="display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <h2 class="page-title">Food Items</h2>
+            <p class="page-subtitle">Manage menu inventory, prices & availability</p>
+          </div>
+          <a href="add_food_item.html" class="btn-add-primary" id="btn-add-food">+ Add New Food Item</a>
+        </div>
+
+        <div class="widget-card">
+          <div class="data-table-wrapper">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th>Category</th>
+                  <th>Price</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Rendered dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 3: CATEGORIES -->
+      <section class="admin-view-panel" id="view-categories">
+        <div class="page-header-row" style="display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <h2 class="page-title">Categories</h2>
+            <p class="page-subtitle">Manage menu categories & display ordering</p>
+          </div>
+          <a href="add_category.html" class="btn-add-primary" id="btn-add-category">+ Add New Category</a>
+        </div>
+
+        <div class="widget-card">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th style="width:70px;">Icon</th>
+                <th>Category Name</th>
+                <th>Total Items</th>
+                <th style="text-align:right; width:150px;">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Rendered dynamically -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Detailed Items View Panel for Selected Category -->
+        <div id="category-items-panel" class="widget-card" style="margin-top: 24px; display: none;">
+          <div class="widget-header" style="border-bottom: 1px solid var(--border-light); padding-bottom: 14px; margin-bottom: 16px;">
+            <h3 class="widget-title" id="selected-cat-title">Items in Category</h3>
+            <div style="display:flex; gap:10px; align-items:center;">
+              <button type="button" class="btn-action-sm" onclick="closeCategoryItemsPanel()" style="background:#F1F5F9; color:#64748B;">Close <i class="fa-solid fa-xmark"></i></button>
+            </div>
+          </div>
+
+          <div class="data-table-wrapper">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Food Item</th>
+                  <th>Price</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="category-items-tbody">
+                <!-- Loaded dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 4: ORDERS -->
+      <section class="admin-view-panel" id="view-orders">
+        <div class="page-header-row">
+          <h2 class="page-title">Orders Management</h2>
+          <p class="page-subtitle">Track and update customer order statuses and promo deals</p>
+        </div>
+
+        <div class="widget-card">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Customer</th>
+                <th>Applied Deal / Promo</th>
+                <th>Status</th>
+                <th>Total Amount</th>
+                <th>Time</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="full-orders-tbody">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- VIEW 5: CUSTOMERS -->
+      <section class="admin-view-panel" id="view-customers">
+        <div class="page-header-row">
+          <h2 class="page-title">Registered Customers</h2>
+          <p class="page-subtitle">View active users and customer order details</p>
+        </div>
+
+        <div class="widget-card">
+          <div class="data-table-wrapper">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Customer Name</th>
+                  <th>Email Address</th>
+                  <th>Phone Number</th>
+                  <th>Registered Date</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="customers-table-tbody">
+                <!-- Loaded dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 6: OFFERS -->
+      <section class="admin-view-panel" id="view-offers">
+        <div class="page-header-row" style="display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <h2 class="page-title">Special Offers &amp; Promos</h2>
+            <p class="page-subtitle">Manage discount deals, promo banners, and coupon codes</p>
+          </div>
+          <a href="add_offer.html" class="btn-add-primary" id="btn-add-offer">+ Add New Offer</a>
+        </div>
+
+        <div class="widget-card">
+          <div class="data-table-wrapper">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Offer Title &amp; Details</th>
+                  <th>Promo Code</th>
+                  <th>Discount</th>
+                  <th>Orders Applied</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="full-offers-tbody">
+                <!-- Rendered dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 7: MESSAGES -->
+      <section class="admin-view-panel" id="view-messages">
+        <div class="page-header-row" style="display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <h2 class="page-title">Customer Messages</h2>
+            <p class="page-subtitle">View, read, and manage customer inquiries saved in the database</p>
+          </div>
+          <button type="button" class="btn-action-sm" onclick="loadMessagesData()" style="background:#F1F5F9; color:#334155; padding:8px 16px; border-radius:8px; font-weight:600; cursor:pointer;">
+            <i class="fa-solid fa-rotate"></i> Refresh Messages
+          </button>
+        </div>
+
+        <div class="widget-card">
+          <div class="data-table-wrapper">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Sender</th>
+                  <th>Contact Details</th>
+                  <th>Subject</th>
+                  <th>Message Preview</th>
+                  <th>Date Sent</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="messages-table-tbody">
+                <!-- Rendered dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- Customer Message Detail Modal -->
+  <div id="message-detail-modal" class="admin-modal-overlay" style="display: none;">
+    <div class="admin-modal-box">
+      <div class="admin-modal-header">
+        <h3 id="modal-msg-subject">Message Details</h3>
+        <button type="button" class="admin-modal-close" onclick="closeMessageModal()">&times;</button>
+      </div>
+      <div class="admin-modal-body">
+        <div class="msg-meta-grid">
+          <div class="msg-meta-item">
+            <strong>Customer Name</strong>
+            <span id="modal-msg-name">-</span>
+          </div>
+          <div class="msg-meta-item">
+            <strong>Date Received</strong>
+            <span id="modal-msg-date">-</span>
+          </div>
+          <div class="msg-meta-item">
+            <strong>Email Address</strong>
+            <span id="modal-msg-email">-</span>
+          </div>
+          <div class="msg-meta-item">
+            <strong>Phone Number</strong>
+            <span id="modal-msg-phone">-</span>
+          </div>
+        </div>
+        <div style="margin-bottom: 8px;">
+          <strong style="color: #64748B; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 6px;">Message Content</strong>
+          <div class="msg-content-box" id="modal-msg-body"></div>
+        </div>
+      </div>
+      <div class="admin-modal-footer">
+        <button type="button" class="btn-action-sm" onclick="closeMessageModal()" style="background:#E2E8F0; color:#475569; padding:8px 16px; border-radius:8px; font-weight:600; cursor:pointer;">Close</button>
+        <button type="button" id="modal-msg-delete-btn" class="btn-action-sm btn-delete" style="padding:8px 16px; border-radius:8px; font-weight:600; cursor:pointer;"><i class="fa-solid fa-trash-can"></i> Delete</button>
+        <a id="modal-msg-reply-btn" href="#" class="btn-add-primary" style="padding:8px 16px; border-radius:8px; text-decoration:none; font-size:13.5px;"><i class="fa-solid fa-reply"></i> Reply via Email</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chart.js Library -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- JavaScript -->
+  <script src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!-- Profile Section Partial Component -->
+<section class="profile-section-partial" id="profile-section">
+  <!-- Hero Card Banner -->
+  <div class="profile-hero-card">
+    <div class="user-hero-info">
+      <div class="user-avatar-large">
+        <i class="fa-solid fa-user-astronaut"></i>
+      </div>
+      <div class="user-hero-details">
+        <h1 id="hero-user-name">Loading Profile...</h1>
+        <p id="hero-user-email">Please wait...</p>
+        <span class="role-pill-badge" id="hero-role-badge">Verified Member</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Details & Stats Grid -->
+  <div class="profile-grid-section">
+    <!-- Left Column: Registration Information -->
+    <div class="info-card">
+      <div class="card-header-title">
+        <i class="fa-solid fa-id-card"></i>
+        <h2>Registration &amp; Account Information</h2>
+      </div>
+
+      <!-- Full Name -->
+      <div class="detail-row">
+        <div class="detail-icon-wrap icon-red">
+          <i class="fa-solid fa-user"></i>
+        </div>
+        <div class="detail-content">
+          <span class="detail-label">Full Name</span>
+          <span class="detail-value" id="val-user-name">Loading...</span>
+        </div>
+      </div>
+
+      <!-- Email Address -->
+      <div class="detail-row">
+        <div class="detail-icon-wrap icon-blue">
+          <i class="fa-solid fa-envelope"></i>
+        </div>
+        <div class="detail-content">
+          <span class="detail-label">Registered Email Address</span>
+          <span class="detail-value" id="val-user-email">Loading...</span>
+        </div>
+      </div>
+
+      <!-- Phone Number -->
+      <div class="detail-row">
+        <div class="detail-icon-wrap icon-green">
+          <i class="fa-solid fa-phone"></i>
+        </div>
+        <div class="detail-content">
+          <span class="detail-label">Contact Phone Number</span>
+          <span class="detail-value" id="val-user-phone">Not Provided</span>
+        </div>
+      </div>
+
+      <!-- Delivery Address -->
+      <div class="detail-row">
+        <div class="detail-icon-wrap icon-amber">
+          <i class="fa-solid fa-location-dot"></i>
+        </div>
+        <div class="detail-content">
+          <span class="detail-label">Primary Delivery Address</span>
+          <span class="detail-value" id="val-user-address">Colombo, Sri Lanka</span>
+        </div>
+      </div>
+
+      <!-- Joined Date -->
+      <div class="detail-row">
+        <div class="detail-icon-wrap icon-purple">
+          <i class="fa-solid fa-calendar-check"></i>
+        </div>
+        <div class="detail-content">
+          <span class="detail-label">Account Registration Date</span>
+          <span class="detail-value" id="val-user-joined">2026</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Account Stats & Shortcuts -->
+    <div>
+      <div class="info-card" style="margin-bottom: 20px;">
+        <div class="card-header-title">
+          <i class="fa-solid fa-chart-pie"></i>
+          <h2>Account Overview</h2>
+        </div>
+
+        <div class="stat-widget-card">
+          <div class="stat-badge-num" id="stat-total-orders">0</div>
+          <div>
+            <div style="font-weight: 700; font-size: 14px;">Total Orders</div>
+            <div class="stat-label-text">Placed with Food Express</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Shortcuts -->
+      <div class="info-card">
+        <div class="card-header-title">
+          <i class="fa-solid fa-compass"></i>
+          <h2>Quick Actions</h2>
+        </div>
+        <a href="../index.html#menu" style="display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; background: #F8FAFC; border-radius: 12px; border: 1px solid #E2E8F0; text-decoration: none; color: #0F172A; font-weight: 700; font-size: 13.5px; margin-bottom: 10px;">
+          <span><i class="fa-solid fa-utensils" style="color: #EA3829; margin-right: 8px;"></i> Order Food Now</span>
+          <i class="fa-solid fa-chevron-right" style="color: #94A3B8; font-size: 12px;"></i>
+        </a>
+        <button onclick="logoutUser()" style="width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; background: #FFEAEB; border-radius: 14px; border: none; color: #DC2626; font-weight: 700; font-size: 13.5px; cursor: pointer; transition: all 0.2s ease;">
+          <span><i class="fa-solid fa-right-from-bracket" style="margin-right: 8px;"></i> Sign Out of Account</span>
+          <i class="fa-solid fa-chevron-right" style="font-size: 12px; color: #DC2626;"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

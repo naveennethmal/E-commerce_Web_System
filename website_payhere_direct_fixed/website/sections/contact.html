@@ -1,0 +1,165 @@
+<!-- Contact Section Partial Component -->
+<section class="contact-section-partial" id="contact-section">
+  <!-- Hero Banner -->
+  <div class="contact-hero-banner">
+    <h1 class="contact-hero-title">Contact Us</h1>
+    <p class="contact-hero-subtitle">We'd love to hear from you! Get in touch with us anytime.</p>
+    <div class="contact-hero-divider"></div>
+  </div>
+
+  <div class="contact-container-grid">
+    <!-- Left Card: Contact Information -->
+    <div class="contact-box-card">
+      <div class="contact-card-top">
+        <div class="contact-header-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+        </div>
+        <div class="contact-card-top-content">
+          <h2>Our Contact Information</h2>
+          <p>Feel free to reach out to us through any of the following methods.</p>
+        </div>
+      </div>
+
+      <div class="contact-info-list">
+        <!-- Phone -->
+        <div class="contact-info-item">
+          <div class="contact-info-icon-badge">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24c1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+            </svg>
+          </div>
+          <div class="contact-info-text">
+            <strong>Phone</strong>
+            <a href="tel:+94712345678" class="contact-info-link">+94 71 234 5678</a>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="contact-info-item">
+          <div class="contact-info-icon-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+          </div>
+          <div class="contact-info-text">
+            <strong>Email</strong>
+            <a href="mailto:info@foodexpress.com" class="contact-info-link">info@foodexpress.com</a>
+          </div>
+        </div>
+
+        <!-- Address -->
+        <div class="contact-info-item">
+          <div class="contact-info-icon-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+          </div>
+          <div class="contact-info-text">
+            <strong>Address</strong>
+            <a href="https://maps.google.com/?q=Colombo,Sri+Lanka" target="_blank" rel="noopener noreferrer" class="contact-info-link">123 Food Street, Colombo, Sri Lanka</a>
+          </div>
+        </div>
+
+        <!-- Working Hours -->
+        <div class="contact-info-item">
+          <div class="contact-info-icon-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </div>
+          <div class="contact-info-text">
+            <strong>Working Hours</strong>
+            <div class="working-hours-lines">
+              <div>Mon - Sat: 9:00 AM – 9:00 PM</div>
+              <div>Sun: 10:00 AM – 8:00 PM</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Action Buttons -->
+      <div class="contact-quick-actions">
+        <a href="https://wa.me/94712345678" target="_blank" rel="noopener noreferrer" class="btn-quick-contact whatsapp">
+          <span><i class="fa-brands fa-whatsapp"></i></span> WhatsApp Us
+        </a>
+        <a href="tel:+94712345678" class="btn-quick-contact call">
+          <span><i class="fa-solid fa-phone"></i></span> Call Support
+        </a>
+      </div>
+    </div>
+
+    <!-- Right Card: Send Us a Message -->
+    <div class="contact-box-card">
+      <div class="contact-card-top">
+        <div class="contact-header-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </div>
+        <div class="contact-card-top-content">
+          <h2>Send Us a Message</h2>
+          <p>We're here to help. Send us your questions, feedback or suggestions.</p>
+        </div>
+      </div>
+
+      <form id="contact-form-standalone" class="contact-form-styled" method="POST" action="../api/contact.php" onsubmit="event.preventDefault(); handleContactSubmit(event); return false;">
+        <div id="contact-feedback" class="contact-feedback-box" style="display:none;"></div>
+
+        <div class="contact-form-row">
+          <div class="contact-input-wrap">
+            <svg class="contact-field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <input type="text" id="contact-name" name="name" class="contact-field-input" placeholder="Your Name" required />
+          </div>
+          <div class="contact-input-wrap">
+            <svg class="contact-field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+            </svg>
+            <input type="email" id="contact-email" name="email" class="contact-field-input" placeholder="Your Email" required />
+          </div>
+        </div>
+
+        <div class="contact-form-row">
+          <div class="contact-input-wrap">
+            <svg class="contact-field-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24c1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+            </svg>
+            <input type="tel" id="contact-phone" name="phone" class="contact-field-input" placeholder="Your Phone (Optional)" />
+          </div>
+          <div class="contact-input-wrap">
+            <svg class="contact-field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path>
+              <line x1="4" y1="22" x2="4" y2="15"></line>
+            </svg>
+            <input type="text" id="contact-subject" name="subject" class="contact-field-input" placeholder="Subject (Optional)" />
+          </div>
+        </div>
+
+        <div class="contact-input-wrap textarea-wrap">
+          <svg class="contact-field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+          </svg>
+          <textarea id="contact-message" name="message" rows="4" class="contact-field-input contact-textarea" placeholder="Your Message" required></textarea>
+        </div>
+
+        <button type="submit" class="btn-contact-submit" id="btn-contact-submit">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+          <span>Send Message</span>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>

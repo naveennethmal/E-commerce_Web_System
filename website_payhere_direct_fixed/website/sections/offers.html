@@ -1,0 +1,92 @@
+<!-- Special Offers Section Partial -->
+<section id="offers-view-section" class="page-view-section">
+  <div class="page-header-title">
+    <h1 class="page-main-heading">Special Offers</h1>
+    <p class="page-sub-heading">Great deals, amazing food! Grab them before they're gone.</p>
+  </div>
+
+  <!-- Offer Filter Pills -->
+  <div class="filter-tabs-row" style="margin-bottom: 24px;" id="offers-filter-pills">
+    <button class="filter-tab-pill active" onclick="filterOffers('all', this)">All Offers</button>
+    <button class="filter-tab-pill" onclick="filterOffers('combo', this)">Combo Deals</button>
+    <button class="filter-tab-pill" onclick="filterOffers('discounts', this)">Discounts</button>
+    <button class="filter-tab-pill" onclick="filterOffers('delivery', this)">Free Delivery</button>
+    <button class="filter-tab-pill" onclick="filterOffers('limited', this)">Limited Time</button>
+  </div>
+
+  <!-- Special Offer Cards Grid -->
+  <div class="offers-grid" id="offers-cards-grid">
+    <!-- Dynamic offers rendered via JS -->
+  </div>
+
+  <!-- More Ways to Save Section -->
+  <div class="home-section-header" style="margin-top: 10px;">
+    <h2 class="home-section-title">More Ways to Save</h2>
+  </div>
+  <div class="more-ways-grid">
+    <div class="save-card">
+      <div class="save-card-icon"><i class="fa-solid fa-crown"></i></div>
+      <div class="save-card-body">
+        <h4>Member Exclusive</h4>
+        <p>Join Food Express Club and get exclusive discounts &amp; rewards.</p>
+        <a href="#" class="save-card-link" onclick="cartManager.showToast('Member Club registration open!')">Join Now →</a>
+      </div>
+    </div>
+    <div class="save-card">
+      <div class="save-card-icon"><i class="fa-solid fa-tags"></i></div>
+      <div class="save-card-body">
+        <h4>Bundle &amp; Save</h4>
+        <p>Add more items to your cart and unlock bigger discounts!</p>
+        <a href="#menu" class="save-card-link" onclick="router.navigateTo('menu')">Shop Now →</a>
+      </div>
+    </div>
+    <div class="save-card">
+      <div class="save-card-icon"><i class="fa-solid fa-gift"></i></div>
+      <div class="save-card-body">
+        <h4>Referral Rewards</h4>
+        <p>Refer your friends and get Rs. 1,500 off on your next order.</p>
+        <a href="#" class="save-card-link" onclick="cartManager.showToast('Referral code copied to clipboard!')">Refer Now →</a>
+      </div>
+    </div>
+    <div class="save-card">
+      <div class="save-card-icon"><i class="fa-solid fa-envelope"></i></div>
+      <div class="save-card-body">
+        <h4>Newsletter Deals</h4>
+        <p>Subscribe to get special offers and updates straight to your inbox.</p>
+        <a href="#" class="save-card-link" onclick="cartManager.showToast('Subscribed to Food Express Deals!')">Subscribe →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trust Guarantees Bar -->
+  <div class="trust-bar">
+    <div class="trust-item">
+      <div class="trust-icon"><i class="fa-solid fa-tags"></i></div>
+      <div class="trust-info">
+        <h5>Best Prices</h5>
+        <p>Get the best prices on your favorite foods.</p>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon"><i class="fa-solid fa-motorcycle"></i></div>
+      <div class="trust-info">
+        <h5>Fast Delivery</h5>
+        <p>Quick delivery right to your door.</p>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon"><i class="fa-solid fa-leaf"></i></div>
+      <div class="trust-info">
+        <h5>Fresh &amp; Tasty</h5>
+        <p>Fresh ingredients, delicious meals.</p>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon"><i class="fa-solid fa-shield-halved"></i></div>
+      <div class="trust-info">
+        <h5>Secure Payment</h5>
+        <p>100% secure payments you can trust.</p>
+      </div>
+    </div>
+  </div>
+</section>

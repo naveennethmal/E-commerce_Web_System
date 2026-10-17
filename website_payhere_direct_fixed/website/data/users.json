@@ -1,0 +1,124 @@
+[
+    {
+        "id": "usr_admin_default",
+        "name": "Admin Manager",
+        "email": "admin@foodexpress.com",
+        "password_hash": "$2y$10$7PcqjuhN78Kqskl4UCnjRusgdijAt\/7qOnrhfGfRch35dg8p\/ivxK",
+        "role": "admin"
+    },
+    {
+        "id": "usr_customer_default",
+        "name": "Food Express Customer",
+        "email": "customer@foodexpress.com",
+        "password_hash": "$2y$10$V3IRP\/SIdTuKV6tRBmB5ZeaHnKJgZago2UyiJGWJjZuAEKesy6gKi",
+        "role": "customer",
+        "password": "password123"
+    },
+    {
+        "id": "usr_58c54202689efb88",
+        "name": "Naveen Nethmal",
+        "email": "nnethmal8@gmail.com",
+        "password_hash": "$2y$10$SyAjSQEj2\/4TwmxOr5x1We.xhZ2OUJC636otsQ0mSb3XsZb9VTZ8C",
+        "role": "customer"
+    },
+    {
+        "id": "usr_3e329514c3c09c81",
+        "name": "Google User",
+        "email": "googleuser@gmail.com",
+        "password_hash": "$2y$10$1Ux7vFDvtO0LKnqOJm0CwusWIrYKxEYwjBT0wEwwhCzpstbCJwTFC",
+        "role": "customer"
+    },
+    {
+        "id": "usr_678572279e6bc459",
+        "name": "naveen nethmal",
+        "email": "nnaveennethmal123@gmail.com",
+        "password_hash": "$2y$10$KkqVfPscuJBBWxJutDYVhuNUNot8Nhm4X2S1WVkKUWJxdggX7Srke",
+        "role": "customer"
+    },
+    {
+        "id": "usr_225170acfa00fd29",
+        "name": "navee",
+        "email": "navee@gmail.com",
+        "password_hash": "$2y$10$LhGtn5dzuNJwsvpBooPyb.gM3MboqlNt8Hr2\/YMm3clvb6QlhNHN.",
+        "role": "customer"
+    },
+    {
+        "id": "usr_9f8cfba16589b131",
+        "name": "naveen",
+        "email": "naveen123@gmail.com",
+        "password_hash": "$2y$10$Qt5nz1l8J4bgE3WItIUhW.LNCVtUABdPmDTAApOnS8KxfvBqWXjHq",
+        "role": "customer"
+    },
+    {
+        "id": "usr_dc9339380bb28d75",
+        "name": "lasindu bashitha",
+        "email": "lasindu@gmail.com",
+        "phone": "0717232656",
+        "address": "21 morayaya werakatiya",
+        "password_hash": "$2y$10$vpgh7c.3by\/ojgvqNiWiRuLMBqwu0YDmcIx0rr95E\/FTb8qLFMKUO",
+        "role": "customer"
+    },
+    {
+        "id": "usr_92e668eaf15f21e6",
+        "name": "wimukthi weerasinha",
+        "email": "wimukthi@gmail.com",
+        "phone": "0785651279",
+        "address": "5 kachigalara,agunukolapalassa",
+        "password_hash": "$2y$10$bCMEmOIIkBnPW15v7MW\/ie1TYtzdkWJePJfOHHKfMWVogNw31SIlq",
+        "role": "customer"
+    },
+    {
+        "id": "usr_c862917a8ccab02b",
+        "name": "gayanga dilshan",
+        "email": "gayanga@gmail.com",
+        "phone": "0758934762",
+        "address": "51\/5 jadura,agunukole",
+        "password_hash": "$2y$10$GLG63Tg698NOwlgFyA5IAeb7wqcQr8wgqg1etDoSDC0QtAeauaxnK",
+        "role": "customer"
+    },
+    {
+        "id": "usr_4fe2be09e025d816",
+        "name": "chamindu",
+        "email": "chamindu@gmail.com",
+        "phone": "0748926594",
+        "address": "356,ebilipitiya,udavalava",
+        "password_hash": "$2y$10$ZuaAuIx11yPbpa2i9uHQYungAhI0RoFDFHexjQ.XRl7a7ojNusybu",
+        "role": "customer"
+    },
+    {
+        "id": "usr_15ab09b97a3b0b11",
+        "name": "sadanu",
+        "email": "sadanu@gmail.com",
+        "phone": "0784621597",
+        "address": "546.hungama,nonagama",
+        "password_hash": "$2y$10$jPwyMKKy2Jz.XZdTLbZNYOcIGufCgU\/toOD9yUyfi4JdmO.HYcLYO",
+        "role": "customer"
+    },
+    {
+        "id": "usr_29e9fb1ae1388e06",
+        "name": "nayomi nisansala",
+        "email": "nayomi@gmail.com",
+        "phone": "0711711477",
+        "address": "370.hathporuva,sooriyawawa",
+        "password_hash": "$2y$10$pb6FSqu9gJxCvIuIq25xgeVgToi2lXfGOX67IH7YgMjMZYdGL1dku",
+        "role": "customer"
+    },
+    {
+        "id": "usr_3c701ad644fcd95a",
+        "name": "Gihan kavindu",
+        "email": "gihan@gmail.com",
+        "phone": "0741290182",
+        "address": "88\/1,Korathota,kaduvela",
+        "password_hash": "$2y$10$y3FGHCe8ihRjCI4.v6\/py.aFcShgdi8w36OjKTHlQt.9dPc0OPusu",
+        "role": "customer"
+    },
+    {
+        "id": "usr_5342ab793f1e1292",
+        "name": "Naveen Nethmal",
+        "email": "naveennethmal123@gmail.com",
+        "phone": "0711711477",
+        "address": "370.hathporuva,sooriyawawa",
+        "password_hash": "$2y$10$\/ANpMcstg054KJS11fRI2ePgLTt1xa6h7rU\/ufaNr\/sjLdaOgQYZ6",
+        "role": "customer"
+    }
+]

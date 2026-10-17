@@ -1,0 +1,235 @@
+<!-- Checkout Section Partial Component -->
+<section id="checkout-view-partial" class="checkout-section-partial">
+  <!-- Checkout Header Bar -->
+  <div class="checkout-page-header">
+    <div class="checkout-header-left">
+      <h1 class="checkout-main-heading">Checkout <i class="fa-solid fa-cart-shopping"></i></h1>
+      <div class="checkout-breadcrumbs">
+        <a href="#home" onclick="router.navigateTo('home')">Home</a>
+        <span class="breadcrumb-separator">&gt;</span>
+        <span class="breadcrumb-current">Checkout</span>
+      </div>
+    </div>
+    <button class="btn-back-menu" onclick="router.navigateTo('menu')">
+      ← Back to Menu
+    </button>
+  </div>
+
+  <!-- Checkout Main Form / Layout -->
+  <div id="checkout-form-container">
+    <form id="checkout-delivery-form" onsubmit="handleCheckoutPagePlaceOrder(event)">
+      <div class="checkout-page-layout">
+        <!-- Left Column: Delivery & Payment -->
+        <div class="checkout-page-left">
+          <!-- Card 1: Delivery Information -->
+          <div class="checkout-card">
+            <div class="checkout-card-header">
+              <span class="checkout-header-icon"><i class="fa-solid fa-location-dot"></i></span>
+              <h2 class="checkout-card-title">Delivery Information</h2>
+            </div>
+            <div class="checkout-form-grid">
+              <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" id="co-name" required placeholder="Enter your full name" class="form-input" />
+              </div>
+              <div class="form-group">
+                <label>Phone Number</label>
+                <input type="tel" id="co-phone" required placeholder="07X XXX XXXX" class="form-input" />
+              </div>
+              <div class="form-group full-width">
+                <label>Email Address</label>
+                <input type="email" id="co-email" required placeholder="Enter your Email Address" class="form-input" />
+              </div>
+              <div class="form-group full-width">
+                <label>Delivery Address</label>
+                <textarea id="co-address" required rows="3" placeholder="Enter your delivery address" class="form-input"></textarea>
+              </div>
+              <div class="form-group full-width">
+                <label>City</label>
+                <input type="text" id="co-city" required placeholder="Enter your city" class="form-input" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Payment Method -->
+          <div class="checkout-card">
+            <div class="checkout-card-header">
+              <span class="checkout-header-icon"><i class="fa-solid fa-credit-card"></i></span>
+              <h2 class="checkout-card-title">Payment Method</h2>
+            </div>
+            <div class="payment-methods-grid">
+              <!-- Cash on Delivery Option -->
+              <div class="payment-method-card active" id="pm-cod-card" onclick="selectPaymentMethod('cod')">
+                <div class="payment-radio-wrap">
+                  <input type="radio" name="payment_method" id="pm-cod-radio" value="cod" checked class="payment-radio" />
+                  <span class="custom-radio-circle"></span>
+                </div>
+                <span class="payment-icon"><i class="fa-solid fa-money-bill-wave"></i></span>
+                <div class="payment-text">
+                  <strong class="payment-title">Cash on Delivery</strong>
+                  <span class="payment-sub">Pay when your order is delivered</span>
+                </div>
+              </div>
+
+              <!-- Credit / Debit Card Option -->
+              <div class="payment-method-card" id="pm-card-card" onclick="selectPaymentMethod('card')">
+                <div class="payment-radio-wrap">
+                  <input type="radio" name="payment_method" id="pm-card-radio" value="card" class="payment-radio" />
+                  <span class="custom-radio-circle"></span>
+                </div>
+                <span class="payment-icon"><i class="fa-solid fa-credit-card"></i></span>
+                <div class="payment-text">
+                  <strong class="payment-title">Credit / Debit Card</strong>
+                  <span class="payment-sub">Pay securely using your card</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card details collapsible area (PayHere Gateway) -->
+            <div id="card-details-box" class="card-details-form" style="display: none; padding: 18px; background: #F8FAFC; border: 1px solid #CBD5E1; border-radius: 14px; margin-top: 14px;">
+              <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                <span style="font-size: 24px; color: #10B981;"><i class="fa-solid fa-shield-halved"></i></span>
+                <div>
+                  <strong style="font-size: 15px; color: #0F172A; display: block;">PayHere Secure Checkout</strong>
+                  <span style="font-size: 12.5px; color: #64748B;">Merchant ID: <strong>1238350</strong> &bull; 256-bit SSL Encrypted</span>
+                </div>
+              </div>
+              <p style="font-size: 13px; color: #475569; margin: 0 0 12px 0; line-height: 1.5;">
+                Clicking <strong>Place Order</strong> will open the official <strong>PayHere Sandbox</strong> checkout. Enter your test card number, expiry date and CVV securely on PayHere — card details are not stored by this website.
+              </p>
+              <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center; font-size: 22px;">
+                <i class="fa-brands fa-cc-visa" style="color: #1A1F71;"></i>
+                <i class="fa-brands fa-cc-mastercard" style="color: #EB001B;"></i>
+                <i class="fa-brands fa-cc-amex" style="color: #006FCF;"></i>
+                <i class="fa-brands fa-cc-discover" style="color: #E65C00;"></i>
+                <span style="font-size: 11px; background: #E2E8F0; padding: 3px 8px; border-radius: 6px; font-weight: 700; color: #334155;">eZ Cash / mCash</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Your Order Summary -->
+        <div class="checkout-page-right">
+          <div class="checkout-card checkout-order-summary-card">
+            <div class="checkout-card-header">
+              <span class="checkout-header-icon"><i class="fa-solid fa-cart-shopping"></i></span>
+              <h2 class="checkout-card-title">Your Order</h2>
+            </div>
+
+            <!-- Pricing breakdown -->
+            <div class="checkout-summary-rows">
+              <div class="checkout-summary-row">
+                <span>Subtotal</span>
+                <span id="checkout-page-subtotal">Rs. 0.00</span>
+              </div>
+              <div class="checkout-summary-row" id="checkout-page-discount-row" style="display: none; color: #16a34a; font-weight: 600;">
+                <span>Discount (<span id="checkout-page-discount-code"></span>)</span>
+                <span id="checkout-page-discount-val">-Rs. 0.00</span>
+              </div>
+              <div class="checkout-summary-row">
+                <span>Delivery Fee</span>
+                <span id="checkout-page-delivery-fee">Rs. 250.00</span>
+              </div>
+              <div class="checkout-summary-divider"></div>
+              <div class="checkout-summary-row total-row">
+                <span>Total</span>
+                <span class="checkout-total-price" id="checkout-page-total">Rs. 0.00</span>
+              </div>
+            </div>
+
+            <!-- Place Order CTA Button -->
+            <button type="submit" class="btn-place-order-primary">
+              <span><i class="fa-solid fa-cart-shopping"></i> Place Order</span>
+            </button>
+
+            <!-- Trust badge footer -->
+            <div class="checkout-trust-footer">
+              <span class="shield-icon"><i class="fa-solid fa-shield-halved"></i></span>
+              <span>Your payment information is safe and secure.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- Order Tracking / Success State -->
+  <div id="checkout-tracking-container" class="checkout-tracking-view" style="display: none;">
+    <div class="checkout-card order-success-card">
+      <div class="order-success-banner">
+        <div class="success-icon-wrap"><i class="fa-solid fa-check"></i></div>
+        <h2>Order Placed Successfully!</h2>
+        <p>Thank you for your order. We are preparing your fresh meal right now!</p>
+        <div class="order-id-badge">Order ID: <strong id="checkout-order-id">#FE-892401</strong></div>
+      </div>
+
+      <div class="tracking-timeline-wrapper">
+        <h3 class="timeline-heading">Live Order Tracking</h3>
+        <div class="tracking-timeline">
+          <div class="track-step completed" id="page-track-1">
+            <div class="track-icon"><i class="fa-solid fa-file-lines"></i></div>
+            <div class="track-info">
+              <h4>Order Received</h4>
+              <p>Your order has been sent to the kitchen.</p>
+            </div>
+          </div>
+          <div class="track-step active" id="page-track-2">
+            <div class="track-icon"><i class="fa-solid fa-utensils"></i></div>
+            <div class="track-info">
+              <h4>Preparing Food</h4>
+              <p>Our chefs are cooking your fresh meal.</p>
+            </div>
+          </div>
+          <div class="track-step" id="page-track-3">
+            <div class="track-icon"><i class="fa-solid fa-motorcycle"></i></div>
+            <div class="track-info">
+              <h4>Out for Delivery</h4>
+              <p>Driver is on the way to your location.</p>
+            </div>
+          </div>
+          <div class="track-step" id="page-track-4">
+            <div class="track-icon"><i class="fa-solid fa-house-chimney"></i></div>
+            <div class="track-info">
+              <h4>Delivered</h4>
+              <p>Enjoy your delicious Food Express meal!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tracking-actions" style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
+        <button onclick="resetCheckoutView(); router.navigateTo('menu');" class="btn-return-home" style="background: var(--primary-orange, #FF6B00);">
+          <i class="fa-solid fa-utensils"></i> Order More Food
+        </button>
+        <button onclick="resetCheckoutView(); router.navigateTo('home');" class="btn-return-home" style="background: #475569;">
+          Done &amp; Return Home
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Feature Highlights Bar -->
+  <div class="checkout-features-bar">
+    <div class="feature-box">
+      <div class="feature-icon-wrapper yellow"><i class="fa-solid fa-bolt"></i></div>
+      <div class="feature-content">
+        <strong class="feature-title">Fast Delivery</strong>
+        <p class="feature-desc">Your food will be delivered as fast as possible</p>
+      </div>
+    </div>
+    <div class="feature-box">
+      <div class="feature-icon-wrapper green"><i class="fa-solid fa-circle-check"></i></div>
+      <div class="feature-content">
+        <strong class="feature-title">Best Quality</strong>
+        <p class="feature-desc">We ensure the best quality food for you</p>
+      </div>
+    </div>
+    <div class="feature-box">
+      <div class="feature-icon-wrapper purple"><i class="fa-solid fa-shield-halved"></i></div>
+      <div class="feature-content">
+        <strong class="feature-title">Secure Payment</strong>
+        <p class="feature-desc">Your payment information is 100% secure</p>
+      </div>
+    </div>
+  </div>
+</section>

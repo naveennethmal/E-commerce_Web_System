@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us - Food Express</title>
+  <meta name="description" content="Get in touch with Food Express. Feel free to contact us via phone, email, address, or send us a message directly." />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/pages.css" />
+  <style>
+    .contact-standalone-layout {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px 20px 70px 20px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- Site Header -->
+    <header class="site-header">
+      <div class="header-container">
+        <!-- Logo -->
+        <a href="../index.html#home" class="brand-logo">
+          <div class="brand-icon-wrap">
+            <svg class="brand-svg-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="logoBg" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#FF9E00"/>
+                  <stop offset="50%" stop-color="#E85D04"/>
+                  <stop offset="100%" stop-color="#DC2626"/>
+                </linearGradient>
+                <linearGradient id="chefHatGrad" x1="0" y1="0" x2="0" y2="100%">
+                  <stop offset="0%" stop-color="#FFFFFF"/>
+                  <stop offset="100%" stop-color="#FFF3C4"/>
+                </linearGradient>
+                <linearGradient id="boltGrad" x1="0" y1="0" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#FFEA00"/>
+                  <stop offset="100%" stop-color="#FF9E00"/>
+                </linearGradient>
+              </defs>
+              <rect width="44" height="44" rx="13" fill="url(#logoBg)"/>
+              <rect x="0.5" y="0.5" width="43" height="43" rx="12.5" stroke="white" stroke-opacity="0.25"/>
+              <path d="M14.5 18C14.5 15.7909 16.2909 14 18.5 14C19.2483 14 19.9482 14.2057 20.5484 14.5638C21.4391 13.5939 22.7231 13 24 13C25.2769 13 26.5609 13.5939 27.4516 14.5638C28.0518 14.2057 28.7517 14 29.5 14C31.7091 14 33.5 15.7909 33.5 18C33.5 19.1245 33.0371 20.141 32.2909 20.8718C32.7423 21.6703 33 22.5839 33 23.5C33 25.433 31.433 27 29.5 27H18.5C16.567 27 15 25.433 15 23.5C15 22.5839 15.2577 21.6703 15.7091 20.8718C14.9629 20.141 14.5 19.1245 14.5 18Z" fill="url(#chefHatGrad)"/>
+              <path d="M16.5 27.5H31.5V30.5C31.5 31.6046 30.6046 32.5 29.5 32.5H18.5C17.3954 32.5 16.5 31.6046 16.5 30.5V27.5Z" fill="url(#chefHatGrad)"/>
+              <path d="M26 21L20.5 28.5H24.5L23 34L28.5 26.5H24.5L26 21Z" fill="url(#boltGrad)"/>
+            </svg>
+          </div>
+          <div class="brand-info">
+            <div class="brand-name-row">
+              <span class="brand-name-food">Food</span>
+              <span class="brand-name-express">Express</span>
+              <span class="brand-speed-tag"><i class="fa-solid fa-bolt"></i></span>
+            </div>
+            <span class="brand-slogan"><span class="slogan-pulse"></span> DELICIOUS &amp; FAST DELIVERY</span>
+          </div>
+        </a>
+
+        <!-- Navigation Links -->
+        <nav class="nav-menu">
+          <a href="../index.html#home" class="nav-link">
+            <span><i class="fa-solid fa-house"></i></span> Home
+          </a>
+          <a href="../index.html#menu" class="nav-link">
+            <span><i class="fa-solid fa-utensils"></i></span> Menu
+          </a>
+          <a href="../index.html#offers" class="nav-link">
+            <span><i class="fa-solid fa-tags"></i></span> Offers
+          </a>
+          <a href="../index.html#about" class="nav-link">
+            <span><i class="fa-solid fa-info-circle"></i></span> About
+          </a>
+          <a href="contact.html" class="nav-link active">
+            <span><i class="fa-solid fa-envelope"></i></span> Contact
+          </a>
+          <a href="../index.html#cart" class="nav-link">
+            <span><i class="fa-solid fa-cart-shopping"></i></span> Cart
+          </a>
+        </nav>
+
+        <!-- Search Bar -->
+        <div class="search-wrapper">
+          <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+          <input type="text" class="search-input" placeholder="Search for food..." onkeydown="if(event.key==='Enter') window.location.href='../index.html#menu';" />
+        </div>
+
+        <!-- Header Actions -->
+        <div class="header-right-actions">
+          <!-- Notification Bell Wrapper -->
+          <div class="notif-dropdown-wrapper" style="position:relative;">
+            <button class="icon-btn notif-btn" id="notif-toggle-btn" title="Notifications">
+              <span><i class="fa-solid fa-bell"></i></span>
+              <span class="badge-count-red" id="notif-badge-count" style="display:none;">0</span>
+            </button>
+
+            <!-- Notifications Popover Card -->
+            <div class="notif-popover-card" id="notif-popover-card" style="display:none; position:absolute; top:calc(100% + 12px); right:0; width:320px; background:#FFFFFF; border-radius:16px; box-shadow:0 12px 35px rgba(0,0,0,0.18); border:1px solid #E2E8F0; z-index:999; overflow:hidden;">
+              <div style="padding:14px 18px; border-bottom:1px solid #F1F5F9; display:flex; align-items:center; justify-space-between; background:#FAFBFD;">
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <i class="fa-solid fa-bell" style="color:#EA3829; font-size:16px;"></i>
+                  <strong style="font-size:15px; color:#0F172A;">Notifications</strong>
+                  <span id="notif-header-count" style="background:#FFF0F0; color:#EF4444; font-size:11px; font-weight:700; padding:2px 8px; border-radius:9999px;">0</span>
+                </div>
+                <button id="clear-all-notifs" style="background:none; border:none; color:#64748B; font-size:12px; font-weight:600; cursor:pointer; padding:2px 6px; border-radius:6px;" onmouseover="this.style.color='#EF4444'" onmouseout="this.style.color='#64748B'">Clear all</button>
+              </div>
+
+              <!-- Notification List Container -->
+              <div id="notif-list-container" style="max-height:340px; overflow-y:auto; padding:4px 0;">
+                <div id="notif-empty-state" style="padding:30px 20px; text-align:center; color:#94A3B8;">
+                  <i class="fa-regular fa-bell-slash" style="font-size:32px; color:#CBD5E1; margin-bottom:8px; display:block;"></i>
+                  <span style="font-size:13px; font-weight:500;">No new notifications</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Profile Dropdown Wrapper -->
+          <div class="profile-dropdown-wrapper" id="profile-dropdown-wrapper">
+            <button class="profile-avatar-trigger" id="profile-trigger-btn" title="User Profile">
+              <div class="avatar-circle-purple">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                </svg>
+              </div>
+              <span class="dropdown-chevron-arrow"><i class="fa-solid fa-chevron-down"></i></span>
+            </button>
+
+            <!-- Profile Popover Card -->
+            <div class="profile-popover-card" id="profile-popover-card">
+              <div class="popover-top-arrow"></div>
+
+              <!-- User Banner -->
+              <div class="user-profile-banner">
+                <div class="banner-avatar-wrap">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                  </svg>
+                </div>
+                <div class="banner-user-info">
+                  <h4 class="user-display-name" id="popover-user-name">Naveen Nethmal</h4>
+                  <span class="user-display-email" id="popover-user-email">nnethmal8@gmail.com</span>
+                </div>
+              </div>
+
+              <!-- Menu List -->
+              <div class="popover-menu-list">
+                <a href="profile.html" class="popover-menu-item">
+                  <div class="menu-item-left">
+                    <svg class="menu-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span>My Profile</span>
+                  </div>
+                  <span class="item-chevron"><i class="fa-solid fa-chevron-right"></i></span>
+                </a>
+
+                <a href="orders.html" class="popover-menu-item">
+                  <div class="menu-item-left">
+                    <svg class="menu-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                      <line x1="3" y1="6" x2="21" y2="6"></line>
+                      <path d="M16 10a4 4 0 0 1-8 0"></path>
+                    </svg>
+                    <span>My Orders</span>
+                  </div>
+                  <span class="item-chevron"><i class="fa-solid fa-chevron-right"></i></span>
+                </a>
+
+                <a href="favorites.html" class="popover-menu-item">
+                  <div class="menu-item-left">
+                    <svg class="menu-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                    <span>Favorites</span>
+                  </div>
+                  <span class="item-chevron"><i class="fa-solid fa-chevron-right"></i></span>
+                </a>
+              </div>
+
+              <!-- Logout Button -->
+              <button class="popover-logout-btn" onclick="logoutUser()">
+                <svg class="logout-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                  <polyline points="16 17 21 12 16 7"></polyline>
+                  <line x1="21" y1="12" x2="9" y2="12"></line>
+                </svg>
+                <span>Logout</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="contact-standalone-layout">
+      <!-- Hero Banner -->
+      <div class="contact-hero-banner">
+        <h1 class="contact-hero-title">Contact Us</h1>
+        <p class="contact-hero-subtitle">We'd love to hear from you! Get in touch with us anytime.</p>
+        <div class="contact-hero-divider"></div>
+      </div>
+
+      <div class="contact-container-grid">
+        <!-- Left Card: Our Contact Information -->
+        <div class="contact-box-card">
+          <div class="contact-card-top">
+            <div class="contact-header-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+            </div>
+            <div class="contact-card-top-content">
+              <h2>Our Contact Information</h2>
+              <p>Feel free to reach out to us through any of the following methods.</p>
+            </div>
+          </div>
+
+          <div class="contact-info-list">
+            <!-- Phone -->
+            <div class="contact-info-item">
+              <div class="contact-info-icon-badge">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24c1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                </svg>
+              </div>
+              <div class="contact-info-text">
+                <strong>Phone</strong>
+                <a href="tel:+94712345678" class="contact-info-link">+94 71 234 5678</a>
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="contact-info-item">
+              <div class="contact-info-icon-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </div>
+              <div class="contact-info-text">
+                <strong>Email</strong>
+                <a href="mailto:info@foodexpress.com" class="contact-info-link">info@foodexpress.com</a>
+              </div>
+            </div>
+
+            <!-- Address -->
+            <div class="contact-info-item">
+              <div class="contact-info-icon-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+              </div>
+              <div class="contact-info-text">
+                <strong>Address</strong>
+                <a href="https://maps.google.com/?q=Colombo,Sri+Lanka" target="_blank" rel="noopener noreferrer" class="contact-info-link">123 Food Street, Colombo, Sri Lanka</a>
+              </div>
+            </div>
+
+            <!-- Working Hours -->
+            <div class="contact-info-item">
+              <div class="contact-info-icon-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+              </div>
+              <div class="contact-info-text">
+                <strong>Working Hours</strong>
+                <div class="working-hours-lines">
+                  <div>Mon - Sat: 9:00 AM – 9:00 PM</div>
+                  <div>Sun: 10:00 AM – 8:00 PM</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Action Direct Buttons -->
+          <div class="contact-quick-actions">
+            <a href="https://wa.me/94712345678" target="_blank" rel="noopener noreferrer" class="btn-quick-contact whatsapp">
+              <span><i class="fa-brands fa-whatsapp"></i></span> WhatsApp Us
+            </a>
+            <a href="tel:+94712345678" class="btn-quick-contact call">
+              <span><i class="fa-solid fa-phone"></i></span> Call Support
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Card: Send Us a Message -->
+        <div class="contact-box-card">
+          <div class="contact-card-top">
+            <div class="contact-header-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </div>
+            <div class="contact-card-top-content">
+              <h2>Send Us a Message</h2>
+              <p>We're here to help. Send us your questions, feedback or suggestions.</p>
+            </div>
+          </div>
+
+          <form id="contact-form-standalone" class="contact-form-styled" method="POST" action="../api/contact.php" onsubmit="event.preventDefault(); handleContactSubmit(event); return false;">
+            <!-- Inline Feedback Box -->
+            <div id="contact-feedback" class="contact-feedback-box" style="display:none;"></div>
+
+            <!-- Row 1: Name and Email -->
+            <div class="contact-form-row">
+              <div class="contact-input-wrap">
+                <svg class="contact-field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <input type="text" id="contact-name" name="name" class="contact-field-input" placeholder="Your Name" required />
+              </div>
+              <div class="contact-input-wrap">
+                <svg class="contact-field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                </svg>
+                <input type="email" id="contact-email" name="email" class="contact-field-input" placeholder="Your Email" required />
+              </div>
+            </div>
+
+            <!-- Row 2: Phone and Subject -->
+            <div class="contact-form-row">
+              <div class="contact-input-wrap">
+                <svg class="contact-field-icon" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24c1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                </svg>
+                <input type="tel" id="contact-phone" name="phone" class="contact-field-input" placeholder="Your Phone (Optional)" />
+              </div>
+              <div class="contact-input-wrap">
+                <svg class="contact-field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path>
+                  <line x1="4" y1="22" x2="4" y2="15"></line>
+                </svg>
+                <input type="text" id="contact-subject" name="subject" class="contact-field-input" placeholder="Subject (Optional)" />
+              </div>
+            </div>
+
+            <!-- Row 3: Message -->
+            <div class="contact-input-wrap textarea-wrap">
+              <svg class="contact-field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+              </svg>
+              <textarea id="contact-message" name="message" rows="4" class="contact-field-input contact-textarea" placeholder="Your Message" required></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn-contact-submit" id="btn-contact-submit">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+              <span>Send Message</span>
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Location Map Section -->
+      <div class="contact-map-card">
+        <div class="map-card-header">
+          <div class="map-card-title">
+            <span><i class="fa-solid fa-location-dot" style="font-size:24px; color:#EA580C;"></i></span>
+            <div>
+              <h4>Food Express Colombo Main Hub</h4>
+              <p style="font-size: 13px; color: #6b7280; margin-top: 2px;">123 Food Street, Colombo 03, Sri Lanka</p>
+            </div>
+          </div>
+          <a href="https://maps.google.com/?q=Colombo,Sri+Lanka" target="_blank" rel="noopener noreferrer" class="btn-directions">
+            <span><i class="fa-solid fa-diamond-turn-right"></i></span> Get Directions →
+          </a>
+        </div>
+        <div class="map-iframe-container">
+          <iframe 
+            src="https://maps.google.com/maps?q=Colombo,%20Sri%20Lanka&t=&z=13&ie=UTF8&iwloc=&output=embed" 
+            loading="lazy" 
+            title="Food Express Hub Location">
+          </iframe>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-top-grid">
+          <!-- Column 1: Brand Info -->
+          <div class="footer-col brand-col">
+            <div class="brand-logo footer-logo">
+              <div class="brand-icon-wrap">
+                <svg class="brand-svg-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <linearGradient id="logoBgFooter" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+                      <stop offset="0%" stop-color="#FF9E00"/>
+                      <stop offset="50%" stop-color="#E85D04"/>
+                      <stop offset="100%" stop-color="#DC2626"/>
+                    </linearGradient>
+                    <linearGradient id="chefHatGradFooter" x1="0" y1="0" x2="0" y2="100%">
+                      <stop offset="0%" stop-color="#FFFFFF"/>
+                      <stop offset="100%" stop-color="#FFF3C4"/>
+                    </linearGradient>
+                    <linearGradient id="boltGradFooter" x1="0" y1="0" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#FFEA00"/>
+                      <stop offset="100%" stop-color="#FF9E00"/>
+                    </linearGradient>
+                  </defs>
+                  <rect width="44" height="44" rx="13" fill="url(#logoBgFooter)"/>
+                  <rect x="0.5" y="0.5" width="43" height="43" rx="12.5" stroke="white" stroke-opacity="0.25"/>
+                  <path d="M14.5 18C14.5 15.7909 16.2909 14 18.5 14C19.2483 14 19.9482 14.2057 20.5484 14.5638C21.4391 13.5939 22.7231 13 24 13C25.2769 13 26.5609 13.5939 27.4516 14.5638C28.0518 14.2057 28.7517 14 29.5 14C31.7091 14 33.5 15.7909 33.5 18C33.5 19.1245 33.0371 20.141 32.2909 20.8718C32.7423 21.6703 33 22.5839 33 23.5C33 25.433 31.433 27 29.5 27H18.5C16.567 27 15 25.433 15 23.5C15 22.5839 15.2577 21.6703 15.7091 20.8718C14.9629 20.141 14.5 19.1245 14.5 18Z" fill="url(#chefHatGradFooter)"/>
+                  <path d="M16.5 27.5H31.5V30.5C31.5 31.6046 30.6046 32.5 29.5 32.5H18.5C17.3954 32.5 16.5 31.6046 16.5 30.5V27.5Z" fill="url(#chefHatGradFooter)"/>
+                  <path d="M26 21L20.5 28.5H24.5L23 34L28.5 26.5H24.5L26 21Z" fill="url(#boltGradFooter)"/>
+                </svg>
+              </div>
+              <div class="brand-info">
+                <div class="brand-name-row">
+                  <span class="brand-name-food">Food</span>
+                  <span class="brand-name-express">Express</span>
+                  <span class="brand-speed-tag"><i class="fa-solid fa-bolt"></i></span>
+                </div>
+                <span class="brand-slogan"><span class="slogan-pulse"></span> DELICIOUS &amp; FAST DELIVERY</span>
+              </div>
+            </div>
+            <p style="font-size: 12px; color: #9CA3AF; max-width: 260px; line-height: 1.5;">
+              Delicious meals from the best restaurants, delivered fast and fresh to your doorstep.
+            </p>
+          </div>
+
+          <!-- Column 2: Quick Links -->
+          <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="../index.html#home">Home</a></li>
+              <li><a href="../index.html#menu">Menu</a></li>
+              <li><a href="../index.html#offers">Offers</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 3: Company -->
+          <div class="footer-col">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="../index.html#about">About Us</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
+              <li><a href="../index.html#home">FAQs</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 4: Support -->
+          <div class="footer-col">
+            <h4>Support</h4>
+            <ul>
+              <li><a href="contact.html">Help Center</a></li>
+              <li><a href="contact.html">Terms &amp; Conditions</a></li>
+              <li><a href="contact.html">Privacy Policy</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 5: Follow Us -->
+          <div class="footer-col">
+            <h4>Follow Us</h4>
+            <div class="social-links-row">
+              <a href="#" title="Facebook" style="color:#9CA3AF;"><i class="fa-brands fa-facebook"></i></a>
+              <a href="#" title="Instagram" style="color:#9CA3AF;"><i class="fa-brands fa-instagram"></i></a>
+              <a href="#" title="Twitter" style="color:#9CA3AF;"><i class="fa-brands fa-square-twitter"></i></a>
+              <a href="#" title="YouTube" style="color:#9CA3AF;"><i class="fa-brands fa-square-youtube"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom-row" style="display:flex; align-items:center; justify-content:space-between; padding-top:16px; font-size:12px; color:#6B7280;">
+          <span>© 2024 Food Express. All rights reserved.</span>
+          <div class="footer-links-inline" style="display:flex; gap:14px;">
+            <a href="contact.html" style="color:#6B7280; text-decoration:none;">Privacy Policy</a>
+            <span>|</span>
+            <a href="contact.html" style="color:#6B7280; text-decoration:none;">Terms &amp; Conditions</a>
+            <span>|</span>
+            <a href="contact.html" style="color:#6B7280; text-decoration:none;">Help</a>
+            <span>|</span>
+            <a href="contact.html" style="color:#6B7280; text-decoration:none;">Contact</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="../js/data.js"></script>
+  <script src="../js/cart.js"></script>
+  <script src="../js/header.js"></script>
+  <script src="../js/app.js"></script>
+</body>
+</html>

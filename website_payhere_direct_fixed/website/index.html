@@ -1,0 +1,1392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Food Express - Delicious Food, Delivered Fast</title>
+  <meta name="description"
+    content="Order your favorite food online from Food Express. Enjoy fast delivery of burgers, pizza, fried chicken, drinks, and desserts right to your doorstep." />
+
+  <!-- Stylesheets ->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+
+  <!-- PayHere Payment Gateway SDK -->
+  <script type="text/javascript" src="https://www.payhere.lk/lib/payhere-2.0.js"></script>
+</head>
+
+<body>
+  <div class="app-container">
+
+    <!-- Site Header -->
+    <header class="site-header">
+      <div class="header-container">
+        <!-- Logo -->
+        <a href="#home" class="brand-logo" onclick="router.navigateTo('home')">
+          <div class="brand-icon-wrap">
+            <svg class="brand-svg-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="logoBg" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#FF9E00" />
+                  <stop offset="50%" stop-color="#E85D04" />
+                  <stop offset="100%" stop-color="#DC2626" />
+                </linearGradient>
+                <linearGradient id="chefHatGrad" x1="0" y1="0" x2="0" y2="100%">
+                  <stop offset="0%" stop-color="#FFFFFF" />
+                  <stop offset="100%" stop-color="#FFF3C4" />
+                </linearGradient>
+                <linearGradient id="boltGrad" x1="0" y1="0" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#FFEA00" />
+                  <stop offset="100%" stop-color="#FF9E00" />
+                </linearGradient>
+              </defs>
+              <rect width="44" height="44" rx="13" fill="url(#logoBg)" />
+              <rect x="0.5" y="0.5" width="43" height="43" rx="12.5" stroke="white" stroke-opacity="0.25" />
+              <path
+                d="M14.5 18C14.5 15.7909 16.2909 14 18.5 14C19.2483 14 19.9482 14.2057 20.5484 14.5638C21.4391 13.5939 22.7231 13 24 13C25.2769 13 26.5609 13.5939 27.4516 14.5638C28.0518 14.2057 28.7517 14 29.5 14C31.7091 14 33.5 15.7909 33.5 18C33.5 19.1245 33.0371 20.141 32.2909 20.8718C32.7423 21.6703 33 22.5839 33 23.5C33 25.433 31.433 27 29.5 27H18.5C16.567 27 15 25.433 15 23.5C15 22.5839 15.2577 21.6703 15.7091 20.8718C14.9629 20.141 14.5 19.1245 14.5 18Z"
+                fill="url(#chefHatGrad)" />
+              <path
+                d="M16.5 27.5H31.5V30.5C31.5 31.6046 30.6046 32.5 29.5 32.5H18.5C17.3954 32.5 16.5 31.6046 16.5 30.5V27.5Z"
+                fill="url(#chefHatGrad)" />
+              <path d="M26 21L20.5 28.5H24.5L23 34L28.5 26.5H24.5L26 21Z" fill="url(#boltGrad)" />
+            </svg>
+          </div>
+          <div class="brand-info">
+            <div class="brand-name-row">
+              <span class="brand-name-food">Food</span>
+              <span class="brand-name-express">Express</span>
+              <span class="brand-speed-tag"><i class="fa-solid fa-bolt"></i></span>
+            </div>
+            <span class="brand-slogan"><span class="slogan-pulse"></span> DELICIOUS & FAST DELIVERY</span>
+          </div>
+        </a>
+
+        <!-- Navigation Links -->
+        <nav class="nav-menu">
+          <a href="#home" class="nav-link active" data-route="home" onclick="router.navigateTo('home')">
+            <span><i class="fa-solid fa-house"></i></span> Home
+          </a>
+          <a href="#menu" class="nav-link" data-route="menu" onclick="router.navigateTo('menu')">
+            <span><i class="fa-solid fa-utensils"></i></span> Menu
+          </a>
+          <a href="#offers" class="nav-link" data-route="offers" onclick="router.navigateTo('offers')">
+            <span><i class="fa-solid fa-tags"></i></span> Offers
+          </a>
+          <a href="#about" class="nav-link" data-route="about" onclick="router.navigateTo('about')">
+            <span><i class="fa-solid fa-info-circle"></i></span> About
+          </a>
+          <a href="pages/contact.html" class="nav-link" data-route="contact">
+            <span><i class="fa-solid fa-envelope"></i></span> Contact
+          </a>
+          <a href="#cart" class="nav-link" data-route="cart" onclick="router.navigateTo('cart')">
+            <span><i class="fa-solid fa-cart-shopping"></i></span> Cart
+          </a>
+        </nav>
+
+        <!-- Search Bar -->
+        <div class="search-wrapper">
+          <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+          <input type="text" id="search-input" class="search-input" placeholder="Search for food..." />
+        </div>
+
+        <!-- Header Actions -->
+        <div class="header-right-actions">
+          <!-- Notification Bell Wrapper -->
+          <div class="notif-dropdown-wrapper" style="position:relative;">
+            <button class="icon-btn notif-btn" id="notif-toggle-btn" title="Notifications" onclick="event.stopPropagation(); if(window.NotificationSystem) window.NotificationSystem.toggle();">
+              <span><i class="fa-solid fa-bell"></i></span>
+              <span class="badge-count-red" id="notif-badge-count" style="display:none;">0</span>
+            </button>
+
+            <!-- Notifications Popover Card -->
+            <div class="notif-popover-card" id="notif-popover-card" style="display:none; position:absolute; top:calc(100% + 12px); right:0; width:320px; background:#FFFFFF; border-radius:16px; box-shadow:0 12px 35px rgba(0,0,0,0.18); border:1px solid #E2E8F0; z-index:999; overflow:hidden;">
+              <div style="padding:14px 18px; border-bottom:1px solid #F1F5F9; display:flex; align-items:center; justify-space-between; background:#FAFBFD;">
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <i class="fa-solid fa-bell" style="color:#EA3829; font-size:16px;"></i>
+                  <strong style="font-size:15px; color:#0F172A;">Notifications</strong>
+                  <span id="notif-header-count" style="background:#FFF0F0; color:#EF4444; font-size:11px; font-weight:700; padding:2px 8px; border-radius:9999px;">0</span>
+                </div>
+                <button id="clear-all-notifs" style="background:none; border:none; color:#64748B; font-size:12px; font-weight:600; cursor:pointer; padding:2px 6px; border-radius:6px;" onmouseover="this.style.color='#EF4444'" onmouseout="this.style.color='#64748B'">Clear all</button>
+              </div>
+
+              <!-- Notification List Container -->
+              <div id="notif-list-container" style="max-height:340px; overflow-y:auto; padding:4px 0;">
+                <div id="notif-empty-state" style="padding:30px 20px; text-align:center; color:#94A3B8;">
+                  <i class="fa-regular fa-bell-slash" style="font-size:32px; color:#CBD5E1; margin-bottom:8px; display:block;"></i>
+                  <span style="font-size:13px; font-weight:500;">No new notifications</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Profile Dropdown Wrapper -->
+          <div class="profile-dropdown-wrapper" id="profile-dropdown-wrapper">
+            <button class="profile-avatar-trigger" id="profile-trigger-btn" title="Naveen Nethmal">
+              <div class="avatar-circle-purple">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                </svg>
+              </div>
+              <span class="dropdown-chevron-arrow"><i class="fa-solid fa-chevron-down"></i></span>
+            </button>
+
+            <!-- Profile Popover Card -->
+            <div class="profile-popover-card" id="profile-popover-card">
+              <div class="popover-top-arrow"></div>
+
+              <!-- User Banner -->
+              <div class="user-profile-banner">
+                <div class="banner-avatar-wrap">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                  </svg>
+                </div>
+                <div class="banner-user-info">
+                  <h4 class="user-display-name">Naveen Nethmal</h4>
+                  <span class="user-display-email">naveen@gmail.com</span>
+                </div>
+              </div>
+
+              <!-- Menu List -->
+              <div class="popover-menu-list">
+                <button class="popover-menu-item" onclick="handleProfileOption('My Profile')">
+                  <div class="menu-item-left">
+                    <svg class="menu-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span>My Profile</span>
+                  </div>
+                  <span class="item-chevron"><i class="fa-solid fa-chevron-right"></i></span>
+                </button>
+
+                <button class="popover-menu-item" onclick="handleProfileOption('My Orders')">
+                  <div class="menu-item-left">
+                    <svg class="menu-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                      <line x1="3" y1="6" x2="21" y2="6"></line>
+                      <path d="M16 10a4 4 0 0 1-8 0"></path>
+                    </svg>
+                    <span>My Orders</span>
+                  </div>
+                  <span class="item-chevron"><i class="fa-solid fa-chevron-right"></i></span>
+                </button>
+
+                <button class="popover-menu-item" onclick="handleProfileOption('Favorites')">
+                  <div class="menu-item-left">
+                    <svg class="menu-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path
+                        d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                      </path>
+                    </svg>
+                    <span>Favorites</span>
+                  </div>
+                  <span class="item-chevron"><i class="fa-solid fa-chevron-right"></i></span>
+                </button>
+              </div>
+
+              <!-- Logout Button -->
+              <button class="popover-logout-btn" onclick="handleProfileOption('Logout')">
+                <svg class="logout-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                  <polyline points="16 17 21 12 16 7"></polyline>
+                  <line x1="21" y1="12" x2="9" y2="12"></line>
+                </svg>
+                <span>Logout</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Layout (Left Views + Right Cart Sidebar) -->
+    <div class="main-content-layout">
+
+      <!-- Main Content Area -->
+      <main class="view-area">
+
+        <!-- HOME VIEW (Screenshot 4) -->
+        <section id="home-view" class="page-view active">
+          <!-- Hero Banner -->
+          <div class="home-hero-banner">
+            <div class="home-hero-content">
+              <h1 class="home-hero-title">
+                Order Your <span>Favorite Food</span>
+              </h1>
+              <p class="home-hero-desc">
+                Delicious meals from the best restaurants, delivered to your doorstep fast and fresh.
+              </p>
+              <button class="btn-hero-cta" onclick="router.navigateTo('menu')">
+                Order Now →
+              </button>
+            </div>
+            <div class="home-hero-graphic">
+              <img src="images/hero_banner.jpg"
+                alt="Juicy Burger and Fries" />
+            </div>
+          </div>
+
+          <!-- Food Categories Section -->
+          <div class="home-section-header">
+            <h2 class="home-section-title">Food Categories</h2>
+            <a href="#menu" class="view-all-link" onclick="router.navigateTo('menu')">View All →</a>
+          </div>
+          <div class="categories-bar-wrapper">
+            <div class="categories-bar" id="home-categories-list">
+              <!-- Dynamic categories rendered via JS -->
+            </div>
+          </div>
+
+          <!-- Featured Foods Section -->
+          <div class="home-section-header">
+            <h2 class="home-section-title">Featured Foods</h2>
+            <a href="#menu" class="view-all-link" onclick="router.navigateTo('menu')">View All →</a>
+          </div>
+          <div class="filter-tabs-row">
+            <button class="filter-tab-pill active" onclick="filterByCategory('all')">All</button>
+            <button class="filter-tab-pill" onclick="filterByCategory('burgers')">Burgers</button>
+            <button class="filter-tab-pill" onclick="filterByCategory('pizza')">Pizza</button>
+            <button class="filter-tab-pill" onclick="filterByCategory('chicken')">Chicken</button>
+            <button class="filter-tab-pill" onclick="filterByCategory('drinks')">Drinks</button>
+          </div>
+          <div class="food-cards-grid" id="featured-foods-grid">
+            <!-- Dynamic food cards rendered via JS -->
+          </div>
+
+          <!-- 3 Carousel Pagination Dots (From User Screenshot) -->
+          <div class="home-carousel-dots" style="display:flex; justify-content:center; align-items:center; gap:8px; margin: 28px 0 10px 0;">
+            <span style="width:10px; height:10px; border-radius:50%; background:#FF9E00; display:inline-block; cursor:pointer;"></span>
+            <span style="width:10px; height:10px; border-radius:50%; background:#CBD5E1; display:inline-block; cursor:pointer;"></span>
+            <span style="width:10px; height:10px; border-radius:50%; background:#CBD5E1; display:inline-block; cursor:pointer;"></span>
+          </div>
+
+        </section>
+
+
+        <!-- MENU VIEW (Screenshot 2) -->
+        <section id="menu-view" class="page-view">
+          <div class="page-header-title">
+            <h1 class="page-main-heading">Our Menu</h1>
+            <p class="page-sub-heading">Explore our delicious food categories and choose your favorites</p>
+          </div>
+
+          <!-- Categories Pills Bar -->
+          <div class="categories-bar-wrapper">
+            <div class="categories-bar" id="menu-categories-list">
+              <!-- Dynamic categories rendered via JS -->
+            </div>
+          </div>
+
+          <!-- Menu Items Display -->
+          <div id="menu-foods-grid">
+            <!-- Dynamic menu rendered via JS -->
+          </div>
+
+        </section>
+
+
+        <!-- OFFERS VIEW (Screenshot 1) -->
+        <section id="offers-view" class="page-view">
+          <div class="page-header-title">
+            <h1 class="page-main-heading">Special Offers</h1>
+            <p class="page-sub-heading">Great deals, amazing food! Grab them before they're gone.</p>
+          </div>
+
+          <!-- Offer Filter Pills -->
+          <div class="filter-tabs-row" style="margin-bottom: 24px;" id="offers-filter-pills">
+            <button class="filter-tab-pill active" onclick="filterOffers('all', this)">All Offers</button>
+            <button class="filter-tab-pill" onclick="filterOffers('combo', this)">Combo Deals</button>
+            <button class="filter-tab-pill" onclick="filterOffers('discounts', this)">Discounts</button>
+            <button class="filter-tab-pill" onclick="filterOffers('delivery', this)">Free Delivery</button>
+            <button class="filter-tab-pill" onclick="filterOffers('limited', this)">Limited Time</button>
+          </div>
+
+          <!-- Special Offer Cards Grid -->
+          <div class="offers-grid" id="offers-cards-grid">
+            <!-- Dynamic offers rendered via JS -->
+          </div>
+
+          <!-- More Ways to Save Section -->
+          <div class="home-section-header" style="margin-top: 10px;">
+            <h2 class="home-section-title">More Ways to Save</h2>
+          </div>
+          <div class="more-ways-grid">
+            <div class="save-card">
+              <div class="save-card-icon"><i class="fa-solid fa-crown"></i></div>
+              <div class="save-card-body">
+                <h4>Member Exclusive</h4>
+                <p>Join Food Express Club and get exclusive discounts & rewards.</p>
+                <a href="#" class="save-card-link"
+                  onclick="cartManager.showToast('Member Club registration open!')">Join Now →</a>
+              </div>
+            </div>
+            <div class="save-card">
+              <div class="save-card-icon"><i class="fa-solid fa-tags"></i></div>
+              <div class="save-card-body">
+                <h4>Bundle & Save</h4>
+                <p>Add more items to your cart and unlock bigger discounts!</p>
+                <a href="#menu" class="save-card-link" onclick="router.navigateTo('menu')">Shop Now →</a>
+              </div>
+            </div>
+            <div class="save-card">
+              <div class="save-card-icon"><i class="fa-solid fa-gift"></i></div>
+              <div class="save-card-body">
+                <h4>Referral Rewards</h4>
+                <p>Refer your friends and get Rs. 1,500 off on your next order.</p>
+                <a href="#" class="save-card-link"
+                  onclick="cartManager.showToast('Referral code copied to clipboard!')">Refer Now →</a>
+              </div>
+            </div>
+            <div class="save-card">
+              <div class="save-card-icon"><i class="fa-solid fa-envelope"></i></div>
+              <div class="save-card-body">
+                <h4>Newsletter Deals</h4>
+                <p>Subscribe to get special offers and updates straight to your inbox.</p>
+                <a href="#" class="save-card-link"
+                  onclick="cartManager.showToast('Subscribed to Food Express Deals!')">Subscribe →</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Trust Guarantees Bar -->
+          <div class="trust-bar">
+            <div class="trust-item">
+              <div class="trust-icon"><i class="fa-solid fa-tags"></i></div>
+              <div class="trust-info">
+                <h5>Best Prices</h5>
+                <p>Get the best prices on your favorite foods.</p>
+              </div>
+            </div>
+            <div class="trust-item">
+              <div class="trust-icon"><i class="fa-solid fa-motorcycle"></i></div>
+              <div class="trust-info">
+                <h5>Fast Delivery</h5>
+                <p>Quick delivery right to your door.</p>
+              </div>
+            </div>
+            <div class="trust-item">
+              <div class="trust-icon"><i class="fa-solid fa-leaf"></i></div>
+              <div class="trust-info">
+                <h5>Fresh & Tasty</h5>
+                <p>Fresh ingredients, delicious meals.</p>
+              </div>
+            </div>
+            <div class="trust-item">
+              <div class="trust-icon"><i class="fa-solid fa-shield-halved"></i></div>
+              <div class="trust-info">
+                <h5>Secure Payment</h5>
+                <p>100% secure payments you can trust.</p>
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+
+        <!-- ABOUT VIEW (Screenshot 3) -->
+        <section id="about-view" class="page-view">
+          <!-- Hero Card -->
+          <div class="about-hero-card">
+            <div class="about-hero-info">
+              <h1 class="about-title">About <span>Food Express</span></h1>
+              <p class="about-tagline">Good Food. Great Service. Delivered to You.</p>
+              <p class="about-desc-text">
+                Food Express was born out of a simple passion: connecting food lovers with the finest local kitchens and
+                artisanal flavors in record time. What started as a small dream to simplify online ordering has grown
+                into a vibrant culinary journey trusted by thousands of food lovers every day.
+                <br /><br />
+                From sizzling gourmet burgers and hand-tossed artisanal pizzas to comforting rice bowls, crisp
+                sandwiches, refreshing beverages, and heavenly desserts — every single dish is prepared with
+                high-quality fresh ingredients and delivered hot & fresh to your doorstep.
+              </p>
+            </div>
+            <div class="about-hero-img-wrap">
+              <img src="https://images.unsplash.com/photo-1586880244406-556ebe35f282?auto=format&fit=crop&w=800&q=80"
+                alt="Food Express Delivery Courier" />
+            </div>
+          </div>
+
+          <!-- 4 Pillars Grid -->
+          <div class="pillars-grid">
+            <div class="pillar-card pillar-quality">
+              <span class="pillar-top-badge">Top Tier</span>
+              <div class="pillar-icon-circle"><i class="fa-solid fa-utensils"></i></div>
+              <h3 class="pillar-title">Quality Food</h3>
+              <p class="pillar-desc">We partner with the best local kitchens to deliver delicious, fresh meals.</p>
+            </div>
+            <div class="pillar-card pillar-delivery">
+              <span class="pillar-top-badge">Lightning Fast</span>
+              <div class="pillar-icon-circle"><i class="fa-solid fa-motorcycle"></i></div>
+              <h3 class="pillar-title">Fast Delivery</h3>
+              <p class="pillar-desc">Our dedicated fleet ensures your food arrives piping hot & fresh on time.</p>
+            </div>
+            <div class="pillar-card pillar-safety">
+              <span class="pillar-top-badge">100% Safe</span>
+              <div class="pillar-icon-circle"><i class="fa-solid fa-shield-halved"></i></div>
+              <h3 class="pillar-title">Safe & Reliable</h3>
+              <p class="pillar-desc">Strict safety standards, fresh ingredients & hygienic packaging guaranteed.</p>
+            </div>
+            <div class="pillar-card pillar-support">
+              <span class="pillar-top-badge">24/7 Care</span>
+              <div class="pillar-icon-circle"><i class="fa-solid fa-heart"></i></div>
+              <h3 class="pillar-title">Customer First</h3>
+              <p class="pillar-desc">Always here for you with friendly 24/7 customer support and live tracking.</p>
+            </div>
+          </div>
+
+          <!-- Split Row: Timeline + Why Choose -->
+          <div class="about-split-row">
+            <div class="timeline-card">
+              <h2 class="home-section-title">Our Journey</h2>
+              <div class="timeline-steps-wrap" id="about-journey-timeline">
+                <!-- Rendered dynamically -->
+              </div>
+            </div>
+
+            <div class="why-choose-card">
+              <div class="why-choose-header">
+                <span class="why-badge">🌟 Why Choose Us</span>
+                <h3 class="why-choose-title">Why Choose Food Express?</h3>
+              </div>
+              <ul class="why-choose-list">
+                <li><span class="check-icon"><i class="fa-solid fa-circle-check"></i></span> Wide variety of local & international cuisines</li>
+                <li><span class="check-icon"><i class="fa-solid fa-circle-check"></i></span> Exclusive daily member discounts & combo offers</li>
+                <li><span class="check-icon"><i class="fa-solid fa-circle-check"></i></span> Real-time order tracking from kitchen to doorstep</li>
+                <li><span class="check-icon"><i class="fa-solid fa-circle-check"></i></span> 100% secure payments with instant digital receipt</li>
+                <li><span class="check-icon"><i class="fa-solid fa-circle-check"></i></span> Dedicated 24/7 customer happiness support</li>
+              </ul>
+            </div>
+          </div>
+
+        </section>
+
+
+        <!-- CONTACT VIEW -->
+        <section id="contact-view" class="page-view">
+          <div class="page-header-title">
+            <h1 class="page-main-heading">Get in Touch</h1>
+            <p class="page-sub-heading">We'd love to hear from you! Send us a message or reach out anytime.</p>
+          </div>
+
+          <div class="contact-container-grid">
+            <div class="contact-card">
+              <h2 class="contact-title">Send Us a Message</h2>
+              <form class="contact-form" id="website-contact-form" method="POST" action="api/contact.php"
+                onsubmit="event.preventDefault(); handleWebsiteContactSubmit(event); return false;">
+                <div id="contact-feedback" class="contact-feedback-box" style="display:none; margin-bottom: 16px;">
+                </div>
+                <div class="form-group">
+                  <label>Your Name</label>
+                  <input type="text" id="contact-name" name="name" required placeholder="John Doe" class="form-input" />
+                </div>
+                <div class="form-group">
+                  <label>Email Address</label>
+                  <input type="email" id="contact-email" name="email" required placeholder="john@example.com"
+                    class="form-input" />
+                </div>
+                <div class="form-group">
+                  <label>Phone Number (Optional)</label>
+                  <input type="tel" id="contact-phone" name="phone" placeholder="+94 77 123 4567" class="form-input" />
+                </div>
+                <div class="form-group">
+                  <label>Message Subject</label>
+                  <input type="text" id="contact-subject" name="subject" required placeholder="Inquiry about order"
+                    class="form-input" />
+                </div>
+                <div class="form-group">
+                  <label>Message</label>
+                  <textarea id="contact-message" name="message" rows="4" required
+                    placeholder="Write your message here..." class="form-input"></textarea>
+                </div>
+                <button type="submit" id="btn-contact-submit" class="btn-submit-contact">Send Message →</button>
+              </form>
+            </div>
+
+            <div class="contact-card">
+              <h2 class="contact-title">Contact Information</h2>
+              <div style="display: flex; flex-direction: column; gap: 20px; font-size: 14px; color: var(--text-muted);">
+                <div style="display: flex; gap: 14px; align-items: center;">
+                  <span style="font-size: 24px;"><i class="fa-solid fa-location-dot"></i></span>
+                  <div>
+                    <strong style="color: var(--text-main); display: block;">Address</strong>
+                    No. 25, Galle Road, Colombo 03, Sri Lanka
+                  </div>
+                </div>
+                <div style="display: flex; gap: 14px; align-items: center;">
+                  <span style="font-size: 24px;"><i class="fa-solid fa-phone"></i></span>
+                  <div>
+                    <strong style="color: var(--text-main); display: block;">Phone Support</strong>
+                    +94 76 3678 527
+                  </div>
+                </div>
+                <div style="display: flex; gap: 14px; align-items: center;">
+                  <span style="font-size: 24px;"><i class="fa-solid fa-envelope"></i></span>
+                  <div>
+                    <strong style="color: var(--text-main); display: block;">Email Support</strong>
+                    foodexpress@gmail.com
+                  </div>
+                </div>
+                <div style="display: flex; gap: 14px; align-items: center;">
+                  <span style="font-size: 24px;"><i class="fa-solid fa-clock"></i></span>
+                  <div>
+                    <strong style="color: var(--text-main); display: block;">Working Hours</strong>
+                    <div>Mon - Sat: 9:00 AM – 9:00 PM</div>
+                    <div>Sun: 10:00 AM – 8:00 PM</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+
+        <!-- CART VIEW (Dedicated Cart Page) -->
+        <section id="cart-view" class="page-view">
+          <div class="cart-page-header">
+            <div>
+              <h1 class="page-main-heading">Shopping Cart <i class="fa-solid fa-cart-shopping"></i></h1>
+              <p class="page-sub-heading">Review your selected items, apply promo codes, and complete your order.</p>
+            </div>
+            <button class="btn-continue-shopping" onclick="router.navigateTo('menu')">
+              ← Continue Shopping
+            </button>
+          </div>
+
+          <div class="cart-page-layout">
+            <!-- Left Column: Cart Items List & Recommendations -->
+            <div class="cart-page-left">
+              <!-- Cart Items Card -->
+              <div class="cart-page-card">
+                <div class="cart-card-header">
+                  <h3 class="cart-card-title">Order Items (<span id="cart-page-items-count">0</span>)</h3>
+                  <button class="btn-clear-cart-link" onclick="cartManager.clearCart()" id="btn-clear-cart-full">
+                    <i class="fa-solid fa-trash-can"></i> Clear Cart
+                  </button>
+                </div>
+
+                <div class="cart-items-table-wrapper" id="cart-page-items-list">
+                  <!-- Dynamic Cart Table or Empty State rendered via JS -->
+                </div>
+              </div>
+
+
+
+              <!-- Recommendations Section -->
+              <div class="cart-page-card recommendations-card">
+                <h4 class="recommendations-title"><i class="fa-solid fa-wand-magic-sparkles"></i> Frequently Ordered Together</h4>
+                <div class="cart-recommendations-grid" id="cart-page-recommendations">
+                  <!-- Dynamic recommendations rendered via JS -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column: Order Summary Card -->
+            <div class="cart-page-right">
+              <div class="cart-page-card order-summary-card">
+                <h3 class="summary-card-title">Order Summary</h3>
+
+                <!-- Pricing Breakdown -->
+                <div class="summary-rows">
+                  <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span id="cart-page-subtotal">Rs. 0.00</span>
+                  </div>
+                  <div class="summary-row">
+                    <span>Estimated Delivery Fee</span>
+                    <span id="cart-page-delivery-fee" style="font-weight: 700; color: #0F172A;">Rs. 250.00</span>
+                  </div>
+                  <div class="summary-row discount-row" id="cart-page-discount-row" style="display: none;">
+                    <span>Promo Discount (<span id="cart-page-applied-code"></span>)</span>
+                    <span id="cart-page-discount-val">-Rs. 0.00</span>
+                  </div>
+                  <div class="summary-divider"></div>
+                  <div class="summary-row total-row">
+                    <span>Total Amount</span>
+                    <span id="cart-page-total">Rs. 0.00</span>
+                  </div>
+                </div>
+
+
+
+                <!-- Checkout Button -->
+                <button class="btn-cart-checkout-primary" onclick="router.navigateTo('checkout')">
+                  <span>Proceed to Checkout</span> <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+                <!-- Trust Guarantees -->
+                <div class="cart-trust-badges">
+                  <div class="trust-badge-item">
+                    <span><i class="fa-solid fa-shield-halved"></i></span>
+                    <span>100% Secure Checkout</span>
+                  </div>
+                  <div class="trust-badge-item">
+                    <span><i class="fa-solid fa-rotate-left"></i></span>
+                    <span>Easy Cancellation</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- CHECKOUT VIEW -->
+        <section id="checkout-view" class="page-view">
+          <!-- Checkout Header Bar -->
+          <div class="checkout-page-header">
+            <div class="checkout-header-left">
+              <h1 class="checkout-main-heading">Checkout <i class="fa-solid fa-cart-shopping"></i></h1>
+              <div class="checkout-breadcrumbs">
+                <a href="#home" onclick="router.navigateTo('home')">Home</a>
+                <span class="breadcrumb-separator">&gt;</span>
+                <span class="breadcrumb-current">Checkout</span>
+              </div>
+            </div>
+            <button class="btn-back-menu" onclick="router.navigateTo('menu')">
+              ← Back to Menu
+            </button>
+          </div>
+
+          <!-- Checkout Main Form / Layout -->
+          <div id="checkout-form-container">
+            <form id="checkout-delivery-form" onsubmit="handleCheckoutPagePlaceOrder(event)">
+              <div class="checkout-page-layout">
+                <!-- Left Column: Delivery & Payment -->
+                <div class="checkout-page-left">
+                  <!-- Card 1: Delivery Information -->
+                  <div class="checkout-card">
+                    <div class="checkout-card-header">
+                      <span class="checkout-header-icon"><i class="fa-solid fa-location-dot"></i></span>
+                      <h2 class="checkout-card-title">Delivery Information</h2>
+                    </div>
+                    <div class="checkout-form-grid">
+                      <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="co-name" required placeholder="Enter your full name" class="form-input" />
+                      </div>
+                      <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" id="co-phone" required placeholder="07X XXX XXXX" class="form-input" />
+                      </div>
+                      <div class="form-group full-width">
+                        <label>Email Address</label>
+                        <input type="email" id="co-email" required placeholder="Enter your Email Address" class="form-input" />
+                      </div>
+                      <div class="form-group full-width">
+                        <label>Delivery Address</label>
+                        <textarea id="co-address" required rows="3" placeholder="Enter your delivery address"
+                          class="form-input"></textarea>
+                      </div>
+                      <div class="form-group full-width">
+                        <label>City</label>
+                        <input type="text" id="co-city" required placeholder="Enter your city" class="form-input" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Card 2: Payment Method -->
+                  <div class="checkout-card">
+                    <div class="checkout-card-header">
+                      <span class="checkout-header-icon"><i class="fa-solid fa-credit-card"></i></span>
+                      <h2 class="checkout-card-title">Payment Method</h2>
+                    </div>
+                    <div class="payment-methods-grid">
+                      <!-- Cash on Delivery Option -->
+                      <div class="payment-method-card active" id="pm-cod-card" onclick="selectPaymentMethod('cod')">
+                        <div class="payment-radio-wrap">
+                          <input type="radio" name="payment_method" id="pm-cod-radio" value="cod" checked
+                            class="payment-radio" />
+                          <span class="custom-radio-circle"></span>
+                        </div>
+                        <span class="payment-icon"><i class="fa-solid fa-money-bill-wave"></i></span>
+                        <div class="payment-text">
+                          <strong class="payment-title">Cash on Delivery</strong>
+                          <span class="payment-sub">Pay when your order is delivered</span>
+                        </div>
+                      </div>
+
+                      <!-- Credit / Debit Card Option -->
+                      <div class="payment-method-card" id="pm-card-card" onclick="selectPaymentMethod('card')">
+                        <div class="payment-radio-wrap">
+                          <input type="radio" name="payment_method" id="pm-card-radio" value="card"
+                            class="payment-radio" />
+                          <span class="custom-radio-circle"></span>
+                        </div>
+                        <span class="payment-icon"><i class="fa-solid fa-credit-card"></i></span>
+                        <div class="payment-text">
+                          <strong class="payment-title">Credit / Debit Card</strong>
+                          <span class="payment-sub">Pay securely using your card</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Card details collapsible area (PayHere Gateway) -->
+                    <div id="card-details-box" class="card-details-form" style="display: none; padding: 18px; background: #F8FAFC; border: 1px solid #CBD5E1; border-radius: 14px; margin-top: 14px;">
+                      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                        <span style="font-size: 24px; color: #10B981;"><i class="fa-solid fa-shield-halved"></i></span>
+                        <div>
+                          <strong style="font-size: 15px; color: #0F172A; display: block;">PayHere Secure Checkout</strong>
+                          <span style="font-size: 12.5px; color: #64748B;">Merchant ID: <strong>1238350</strong> &bull; 256-bit SSL Encrypted</span>
+                        </div>
+                      </div>
+                      <p style="font-size: 13px; color: #475569; margin: 0 0 12px 0; line-height: 1.5;">
+                        Clicking <strong>Place Order</strong> will open the official <strong>PayHere Sandbox</strong> checkout. Enter your test card number, expiry date and CVV securely on PayHere — card details are not stored by this website.
+                      </p>
+                      <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center; font-size: 22px;">
+                        <i class="fa-brands fa-cc-visa" style="color: #1A1F71;"></i>
+                        <i class="fa-brands fa-cc-mastercard" style="color: #EB001B;"></i>
+                        <i class="fa-brands fa-cc-amex" style="color: #006FCF;"></i>
+                        <i class="fa-brands fa-cc-discover" style="color: #E65C00;"></i>
+                        <span style="font-size: 11px; background: #E2E8F0; padding: 3px 8px; border-radius: 6px; font-weight: 700; color: #334155;">eZ Cash / mCash</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Right Column: Your Order Summary -->
+                <div class="checkout-page-right">
+                  <div class="checkout-card checkout-order-summary-card">
+                    <div class="checkout-card-header">
+                      <span class="checkout-header-icon"><i class="fa-solid fa-cart-shopping"></i></span>
+                      <h2 class="checkout-card-title">Your Order</h2>
+                    </div>
+
+                    <!-- Pricing breakdown -->
+                    <div class="checkout-summary-rows">
+                      <div class="checkout-summary-row">
+                        <span>Subtotal</span>
+                        <span id="checkout-page-subtotal">Rs. 0.00</span>
+                      </div>
+                      <div class="checkout-summary-row" id="checkout-page-discount-row" style="display: none; color: #16a34a; font-weight: 600;">
+                        <span>Discount (<span id="checkout-page-discount-code"></span>)</span>
+                        <span id="checkout-page-discount-val">-Rs. 0.00</span>
+                      </div>
+                      <div class="checkout-summary-row">
+                        <span>Delivery Fee</span>
+                        <span id="checkout-page-delivery-fee">Rs. 250.00</span>
+                      </div>
+                      <div class="checkout-summary-divider"></div>
+                      <div class="checkout-summary-row total-row">
+                        <span>Total</span>
+                        <span class="checkout-total-price" id="checkout-page-total">Rs. 0.00</span>
+                      </div>
+                    </div>
+
+                    <!-- Place Order CTA Button -->
+                    <button type="submit" class="btn-place-order-primary">
+                      <span><i class="fa-solid fa-cart-shopping"></i> Place Order</span>
+                    </button>
+
+                    <!-- Trust badge footer -->
+                    <div class="checkout-trust-footer">
+                      <span class="shield-icon"><i class="fa-solid fa-shield-halved"></i></span>
+                      <span>Your payment information is safe and secure.</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- Order Tracking / Success State -->
+          <div id="checkout-tracking-container" class="checkout-tracking-view" style="display: none;">
+            <div class="checkout-card order-success-card">
+              <div class="order-success-banner">
+                <div class="success-icon-wrap"><i class="fa-solid fa-check"></i></div>
+                <h2>Order Placed Successfully!</h2>
+                <p>Thank you for your order. We are preparing your fresh meal right now!</p>
+                <div class="order-id-badge">Order ID: <strong id="checkout-order-id">#FE-892401</strong></div>
+              </div>
+
+              <div class="tracking-timeline-wrapper">
+                <h3 class="timeline-heading">Live Order Tracking</h3>
+                <div class="tracking-timeline">
+                  <div class="track-step completed" id="page-track-1">
+                    <div class="track-icon"><i class="fa-solid fa-file-lines"></i></div>
+                    <div class="track-info">
+                      <h4>Order Received</h4>
+                      <p>Your order has been sent to the kitchen.</p>
+                    </div>
+                  </div>
+                  <div class="track-step active" id="page-track-2">
+                    <div class="track-icon"><i class="fa-solid fa-utensils"></i></div>
+                    <div class="track-info">
+                      <h4>Preparing Food</h4>
+                      <p>Our chefs are cooking your fresh meal.</p>
+                    </div>
+                  </div>
+                  <div class="track-step" id="page-track-3">
+                    <div class="track-icon"><i class="fa-solid fa-motorcycle"></i></div>
+                    <div class="track-info">
+                      <h4>Out for Delivery</h4>
+                      <p>Driver is on the way to your location.</p>
+                    </div>
+                  </div>
+                  <div class="track-step" id="page-track-4">
+                    <div class="track-icon"><i class="fa-solid fa-house-chimney"></i></div>
+                    <div class="track-info">
+                      <h4>Delivered</h4>
+                      <p>Enjoy your delicious Food Express meal!</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tracking-actions" style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
+                <button onclick="resetCheckoutView(); router.navigateTo('menu');" class="btn-return-home" style="background: var(--primary-orange, #FF6B00);">
+                  <i class="fa-solid fa-utensils"></i> Order More Food
+                </button>
+                <button onclick="resetCheckoutView(); router.navigateTo('home');" class="btn-return-home" style="background: #475569;">
+                  Done &amp; Return Home
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Feature Highlights Bar -->
+          <div class="checkout-features-bar">
+            <div class="feature-box">
+              <div class="feature-icon-wrapper yellow"><i class="fa-solid fa-bolt"></i></div>
+              <div class="feature-content">
+                <strong class="feature-title">Fast Delivery</strong>
+                <p class="feature-desc">Your food will be delivered as fast as possible</p>
+              </div>
+            </div>
+            <div class="feature-box">
+              <div class="feature-icon-wrapper green"><i class="fa-solid fa-circle-check"></i></div>
+              <div class="feature-content">
+                <strong class="feature-title">Best Quality</strong>
+                <p class="feature-desc">We ensure the best quality food for you</p>
+              </div>
+            </div>
+            <div class="feature-box">
+              <div class="feature-icon-wrapper purple"><i class="fa-solid fa-shield-halved"></i></div>
+              <div class="feature-content">
+                <strong class="feature-title">Secure Payment</strong>
+                <p class="feature-desc">Your payment information is 100% secure</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+
+      <!-- PERSISTENT RIGHT SIDEBAR CART (Screenshots 1, 2, 3, 4) -->
+      <aside class="cart-sidebar-container" id="cart-sidebar">
+        <div class="cart-sidebar-header">
+          <div class="cart-title-wrap">
+            <span><i class="fa-solid fa-cart-shopping"></i></span> Your Cart
+            <span class="cart-badge-circle cart-count-badge">3</span>
+          </div>
+          <button class="close-mobile-cart" id="close-cart-btn"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <!-- Dynamic Cart List -->
+        <div class="cart-sidebar-list" id="cart-sidebar-list">
+          <!-- Rendered dynamically -->
+        </div>
+
+        <!-- Cart Footer -->
+        <div class="cart-sidebar-footer">
+          <div class="cart-total-row">
+            <span>Total:</span>
+            <span class="total-amount" id="cart-sidebar-total">Rs. 2,970.00</span>
+          </div>
+          <button class="btn-checkout" onclick="router.navigateTo('checkout')">
+            <i class="fa-solid fa-cart-shopping"></i> Checkout
+          </button>
+        </div>
+      </aside>
+
+      <div class="cart-overlay" id="cart-overlay"></div>
+
+    </div>
+
+    <!-- SITE FOOTER (100% Full Width across entire page) -->
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-top-grid">
+          <!-- Column 1: Brand Info -->
+          <div class="footer-col brand-col">
+            <div class="brand-logo footer-logo">
+              <div class="brand-icon-wrap">
+                <svg class="brand-svg-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <linearGradient id="logoBgFooterGlobal" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+                      <stop offset="0%" stop-color="#FF9E00"/>
+                      <stop offset="50%" stop-color="#E85D04"/>
+                      <stop offset="100%" stop-color="#DC2626"/>
+                    </linearGradient>
+                    <linearGradient id="chefHatGradFooterGlobal" x1="0" y1="0" x2="0" y2="100%">
+                      <stop offset="0%" stop-color="#FFFFFF"/>
+                      <stop offset="100%" stop-color="#FFF3C4"/>
+                    </linearGradient>
+                    <linearGradient id="boltGradFooterGlobal" x1="0" y1="0" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#FFEA00"/>
+                      <stop offset="100%" stop-color="#FF9E00"/>
+                    </linearGradient>
+                  </defs>
+                  <rect width="44" height="44" rx="13" fill="url(#logoBgFooterGlobal)"/>
+                  <rect x="0.5" y="0.5" width="43" height="43" rx="12.5" stroke="white" stroke-opacity="0.25"/>
+                  <path d="M14.5 18C14.5 15.7909 16.2909 14 18.5 14C19.2483 14 19.9482 14.2057 20.5484 14.5638C21.4391 13.5939 22.7231 13 24 13C25.2769 13 26.5609 13.5939 27.4516 14.5638C28.0518 14.2057 28.7517 14 29.5 14C31.7091 14 33.5 15.7909 33.5 18C33.5 19.1245 33.0371 20.141 32.2909 20.8718C32.7423 21.6703 33 22.5839 33 23.5C33 25.433 31.433 27 29.5 27H18.5C16.567 27 15 25.433 15 23.5C15 22.5839 15.2577 21.6703 15.7091 20.8718C14.9629 20.141 14.5 19.1245 14.5 18Z" fill="url(#chefHatGradFooterGlobal)"/>
+                  <path d="M16.5 27.5H31.5V30.5C31.5 31.6046 30.6046 32.5 29.5 32.5H18.5C17.3954 32.5 16.5 31.6046 16.5 30.5V27.5Z" fill="url(#chefHatGradFooterGlobal)"/>
+                  <path d="M26 21L20.5 28.5H24.5L23 34L28.5 26.5H24.5L26 21Z" fill="url(#boltGradFooterGlobal)"/>
+                </svg>
+              </div>
+              <div class="brand-info">
+                <div class="brand-name-row">
+                  <span class="brand-name-food">Food</span>
+                  <span class="brand-name-express">Express</span>
+                  <span class="brand-speed-tag"><i class="fa-solid fa-bolt"></i></span>
+                </div>
+                <span class="brand-slogan"><span class="slogan-pulse"></span> DELICIOUS & FAST DELIVERY</span>
+              </div>
+            </div>
+            <p style="font-size: 12px; color: #9CA3AF; max-width: 260px; line-height: 1.5; margin-top: 10px;">
+              Connecting food lovers with the best local restaurants. Fast, safe, and hot food delivery to your doorstep.
+            </p>
+          </div>
+
+          <!-- Column 2: Quick Links -->
+          <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="#home" onclick="router.navigateTo('home')">Home</a></li>
+              <li><a href="#menu" onclick="router.navigateTo('menu')">Menu</a></li>
+              <li><a href="#offers" onclick="router.navigateTo('offers')">Offers</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 3: Company -->
+          <div class="footer-col">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="#about" onclick="router.navigateTo('about')">About Us</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
+              <li><a href="#home" onclick="router.navigateTo('home')">FAQs</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 4: Support -->
+          <div class="footer-col">
+            <h4>Support</h4>
+            <ul>
+              <li><a href="contact.html">Help Center</a></li>
+              <li><a href="contact.html">Terms & Conditions</a></li>
+              <li><a href="contact.html">Privacy Policy</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 5: Follow Us & Payment Badges -->
+          <div class="footer-col">
+            <h4>Follow Us</h4>
+            <div class="social-links-row" style="margin-bottom: 14px;">
+              <a href="#" title="Facebook" style="color:#9CA3AF;"><i class="fa-brands fa-facebook"></i></a>
+              <a href="#" title="Instagram" style="color:#9CA3AF;"><i class="fa-brands fa-instagram"></i></a>
+              <a href="#" title="Twitter" style="color:#9CA3AF;"><i class="fa-brands fa-square-twitter"></i></a>
+              <a href="#" title="YouTube" style="color:#9CA3AF;"><i class="fa-brands fa-square-youtube"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom-row" style="display:flex; align-items:center; justify-content:space-between; padding-top:16px; font-size:12px; color:#6B7280;">
+          <span>© 2024 Food Express. All rights reserved.</span>
+          <div class="footer-links-inline" style="display:flex; gap:14px;">
+            <a href="contact.html" style="color:#6B7280; text-decoration:none;">Privacy Policy</a>
+            <span>|</span>
+            <a href="contact.html" style="color:#6B7280; text-decoration:none;">Terms & Conditions</a>
+            <span>|</span>
+            <a href="contact.html" style="color:#6B7280; text-decoration:none;">Help</a>
+            <span>|</span>
+            <a href="contact.html" style="color:#6B7280; text-decoration:none;">Contact</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+    <!-- CHECKOUT & ORDER TRACKING MODAL -->
+    <div class="modal-overlay" id="checkout-modal">
+      <div class="modal-card">
+        <span class="modal-close-icon" onclick="closeCheckoutModal()"><i class="fa-solid fa-xmark"></i></span>
+        <div id="checkout-modal-body">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+    <!-- USER PROFILE MODAL -->
+    <div class="modal-overlay" id="user-profile-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); backdrop-filter:blur(4px); z-index:10000; align-items:center; justify-content:center;">
+      <div class="modal-card" style="background:#FFFFFF; border-radius:22px; width:92%; max-width:500px; padding:26px; box-shadow:0 20px 45px rgba(0,0,0,0.22); position:relative;">
+        <span class="modal-close-icon" onclick="closeUserProfileModal()" style="position:absolute; top:18px; right:18px; cursor:pointer; font-size:20px; color:#64748B;"><i class="fa-solid fa-xmark"></i></span>
+        <div style="text-align:center; padding-bottom:18px; border-bottom:1px solid #F1F5F9;">
+          <div style="width:76px; height:76px; background:linear-gradient(135deg, #FF9E00, #EA3829); border-radius:50%; display:flex; align-items:center; justify-content:center; color:#FFF; font-size:32px; margin:0 auto 12px; box-shadow:0 8px 20px rgba(234,56,41,0.35);">
+            <i class="fa-solid fa-user-gear"></i>
+          </div>
+          <h3 id="profile-modal-name" style="margin:0; font-size:22px; font-weight:800; color:#0F172A;">Naveen Nethmal</h3>
+          <span id="profile-modal-role" style="font-size:12px; background:#FEF3C7; color:#D97706; font-weight:700; padding:3px 12px; border-radius:9999px; display:inline-block; margin-top:6px;">Registered Customer</span>
+        </div>
+        
+        <div style="padding:18px 0; display:flex; flex-direction:column; gap:12px;">
+          <!-- Email -->
+          <div style="display:flex; align-items:center; gap:12px; background:#F8FAFC; padding:12px 16px; border-radius:14px; border:1px solid #F1F5F9;">
+            <div style="width:36px; height:36px; background:#FFF0F0; border-radius:10px; display:flex; align-items:center; justify-content:center; color:#EA3829; font-size:16px;">
+              <i class="fa-solid fa-envelope"></i>
+            </div>
+            <div>
+              <span style="display:block; font-size:11px; color:#64748B; font-weight:600;">Email Address</span>
+              <strong id="profile-modal-email" style="font-size:14px; color:#1E293B;">naveen@gmail.com</strong>
+            </div>
+          </div>
+
+          <!-- Phone -->
+          <div style="display:flex; align-items:center; gap:12px; background:#F8FAFC; padding:12px 16px; border-radius:14px; border:1px solid #F1F5F9;">
+            <div style="width:36px; height:36px; background:#EFF6FF; border-radius:10px; display:flex; align-items:center; justify-content:center; color:#3B82F6; font-size:16px;">
+              <i class="fa-solid fa-phone"></i>
+            </div>
+            <div>
+              <span style="display:block; font-size:11px; color:#64748B; font-weight:600;">Phone Number</span>
+              <strong id="profile-modal-phone" style="font-size:14px; color:#1E293B;">077 123 4567</strong>
+            </div>
+          </div>
+
+          <!-- Delivery Address -->
+          <div style="display:flex; align-items:center; gap:12px; background:#F8FAFC; padding:12px 16px; border-radius:14px; border:1px solid #F1F5F9;">
+            <div style="width:36px; height:36px; background:#F0FDF4; border-radius:10px; display:flex; align-items:center; justify-content:center; color:#10B981; font-size:16px;">
+              <i class="fa-solid fa-location-dot"></i>
+            </div>
+            <div>
+              <span style="display:block; font-size:11px; color:#64748B; font-weight:600;">Primary Delivery Address</span>
+              <strong id="profile-modal-address" style="font-size:13.5px; color:#1E293B;">Colombo, Sri Lanka</strong>
+            </div>
+          </div>
+
+          <!-- Stats 2 Columns -->
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+            <div style="background:#F8FAFC; padding:12px 16px; border-radius:14px; border:1px solid #F1F5F9;">
+              <span style="display:block; font-size:11px; color:#64748B; font-weight:600;">Total Orders</span>
+              <strong id="profile-modal-orders" style="font-size:16px; color:#EA3829; font-weight:800;">0 Orders</strong>
+            </div>
+            <div style="background:#F8FAFC; padding:12px 16px; border-radius:14px; border:1px solid #F1F5F9;">
+              <span style="display:block; font-size:11px; color:#64748B; font-weight:600;">Member Since</span>
+              <strong id="profile-modal-joined" style="font-size:13px; color:#1E293B; font-weight:700;">2026</strong>
+            </div>
+          </div>
+        </div>
+
+        <button onclick="closeUserProfileModal()" style="width:100%; padding:13px; background:#EA3829; color:#FFF; border:none; border-radius:12px; font-weight:700; font-size:14.5px; cursor:pointer; box-shadow:0 4px 12px rgba(234,56,41,0.25);">Close Profile</button>
+      </div>
+    </div>
+
+    <!-- USER ORDERS MODAL -->
+    <div class="modal-overlay" id="user-orders-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); backdrop-filter:blur(4px); z-index:10000; align-items:center; justify-content:center;">
+      <div class="modal-card" style="background:#FFFFFF; border-radius:20px; width:92%; max-width:650px; max-height:85vh; display:flex; flex-direction:column; padding:24px; box-shadow:0 20px 40px rgba(0,0,0,0.2); position:relative;">
+        <span class="modal-close-icon" onclick="closeUserOrdersModal()" style="position:absolute; top:18px; right:18px; cursor:pointer; font-size:20px; color:#64748B;"><i class="fa-solid fa-xmark"></i></span>
+        <div style="display:flex; align-items:center; gap:10px; border-bottom:1px solid #F1F5F9; padding-bottom:14px; margin-bottom:16px;">
+          <div style="width:40px; height:40px; background:#FFF0F0; border-radius:10px; display:flex; align-items:center; justify-content:center; color:#EA3829; font-size:18px;">
+            <i class="fa-solid fa-bag-shopping"></i>
+          </div>
+          <div>
+            <h3 style="margin:0; font-size:18px; font-weight:800; color:#0F172A;">My Order History</h3>
+            <span style="font-size:12px; color:#64748B;">Track your recent food orders</span>
+          </div>
+        </div>
+        <div id="user-orders-list-body" style="flex:1; overflow-y:auto; padding-right:4px; display:flex; flex-direction:column; gap:14px;">
+          <!-- Dynamically loaded -->
+        </div>
+      </div>
+    </div>
+
+    <!-- USER FAVORITES MODAL -->
+    <div class="modal-overlay" id="user-favorites-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); backdrop-filter:blur(4px); z-index:10000; align-items:center; justify-content:center;">
+      <div class="modal-card" style="background:#FFFFFF; border-radius:20px; width:92%; max-width:650px; max-height:85vh; display:flex; flex-direction:column; padding:24px; box-shadow:0 20px 40px rgba(0,0,0,0.2); position:relative;">
+        <span class="modal-close-icon" onclick="closeUserFavoritesModal()" style="position:absolute; top:18px; right:18px; cursor:pointer; font-size:20px; color:#64748B;"><i class="fa-solid fa-xmark"></i></span>
+        <div style="display:flex; align-items:center; gap:10px; border-bottom:1px solid #F1F5F9; padding-bottom:14px; margin-bottom:16px;">
+          <div style="width:40px; height:40px; background:#FEF2F2; border-radius:10px; display:flex; align-items:center; justify-content:center; color:#EF4444; font-size:18px;">
+            <i class="fa-solid fa-heart"></i>
+          </div>
+          <div>
+            <h3 style="margin:0; font-size:18px; font-weight:800; color:#0F172A;">My Saved Favorites</h3>
+            <span style="font-size:12px; color:#64748B;">Your favorite dishes & treats</span>
+          </div>
+        </div>
+        <div id="user-favorites-list-body" style="flex:1; overflow-y:auto; padding-right:4px; display:grid; grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); gap:14px;">
+          <!-- Dynamically loaded -->
+        </div>
+      </div>
+    </div>
+
+    <!-- AUTHENTICATION / LOGIN & SIGNUP MODAL -->
+    <div class="modal-overlay" id="auth-modal">
+      <div class="modal-card auth-modal-card">
+        <span class="modal-close-icon" onclick="closeAuthModal()"><i class="fa-solid fa-xmark"></i></span>
+
+        <!-- Modal Header Branding -->
+        <div class="auth-header">
+          <div class="auth-brand-logo">
+            <div class="brand-icon-wrap">
+              <svg class="brand-svg-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="logoBgAuth" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#FF9E00" />
+                    <stop offset="50%" stop-color="#E85D04" />
+                    <stop offset="100%" stop-color="#DC2626" />
+                  </linearGradient>
+                  <linearGradient id="chefHatGradAuth" x1="0" y1="0" x2="0" y2="100%">
+                    <stop offset="0%" stop-color="#FFFFFF" />
+                    <stop offset="100%" stop-color="#FFF3C4" />
+                  </linearGradient>
+                  <linearGradient id="boltGradAuth" x1="0" y1="0" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#FFEA00" />
+                    <stop offset="100%" stop-color="#FF9E00" />
+                  </linearGradient>
+                </defs>
+                <rect width="44" height="44" rx="13" fill="url(#logoBgAuth)" />
+                <rect x="0.5" y="0.5" width="43" height="43" rx="12.5" stroke="white" stroke-opacity="0.25" />
+                <path
+                  d="M14.5 18C14.5 15.7909 16.2909 14 18.5 14C19.2483 14 19.9482 14.2057 20.5484 14.5638C21.4391 13.5939 22.7231 13 24 13C25.2769 13 26.5609 13.5939 27.4516 14.5638C28.0518 14.2057 28.7517 14 29.5 14C31.7091 14 33.5 15.7909 33.5 18C33.5 19.1245 33.0371 20.141 32.2909 20.8718C32.7423 21.6703 33 22.5839 33 23.5C33 25.433 31.433 27 29.5 27H18.5C16.567 27 15 25.433 15 23.5C15 22.5839 15.2577 21.6703 15.7091 20.8718C14.9629 20.141 14.5 19.1245 14.5 18Z"
+                  fill="url(#chefHatGradAuth)" />
+                <path
+                  d="M16.5 27.5H31.5V30.5C31.5 31.6046 30.6046 32.5 29.5 32.5H18.5C17.3954 32.5 16.5 31.6046 16.5 30.5V27.5Z"
+                  fill="url(#chefHatGradAuth)" />
+                <path d="M26 21L20.5 28.5H24.5L23 34L28.5 26.5H24.5L26 21Z" fill="url(#boltGradAuth)" />
+              </svg>
+            </div>
+            <div class="brand-info">
+              <div class="brand-name-row">
+                <span class="brand-name-food">Food</span>
+                <span class="brand-name-express">Express</span>
+              </div>
+            </div>
+          </div>
+          <p class="auth-subtitle" id="auth-subtitle-text">Welcome back! Sign in to order your favorite food.</p>
+        </div>
+
+        <!-- Auth Tabs Switcher -->
+        <div class="auth-tabs">
+          <button class="auth-tab-btn active" id="tab-login-btn" onclick="switchAuthTab('login')">Sign In</button>
+          <button class="auth-tab-btn" id="tab-signup-btn" onclick="switchAuthTab('signup')">Create Account</button>
+        </div>
+
+        <!-- LOGIN FORM -->
+        <form id="login-form" class="auth-form active" onsubmit="handleLoginSubmit(event)">
+          <div class="form-group">
+            <label>Email Address</label>
+            <div class="input-icon-wrapper">
+              <span class="field-icon"><i class="fa-solid fa-envelope"></i></span>
+              <input type="email" required placeholder="naveen@gmail.com" value="naveen@gmail.com"
+                class="form-input with-icon" id="login-email" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Password</label>
+            <div class="input-icon-wrapper">
+              <span class="field-icon"><i class="fa-solid fa-lock"></i></span>
+              <input type="password" required placeholder="••••••••" value="password123" class="form-input with-icon"
+                id="login-password" />
+              <button type="button" class="toggle-password-btn"
+                onclick="togglePasswordVisibility('login-password', this)"><i class="fa-solid fa-eye"></i></button>
+            </div>
+          </div>
+
+          <div class="auth-meta-row">
+            <label class="checkbox-container">
+              <input type="checkbox" checked />
+              <span class="checkmark"></span>
+              <span>Remember Me</span>
+            </label>
+            <a href="#" class="forgot-pass-link"
+              onclick="cartManager.showToast('Password reset link sent to email!')">Forgot Password?</a>
+          </div>
+
+          <button type="submit" class="btn-auth-submit">
+            <span>Sign In to Food Express</span> <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </form>
+
+        <!-- SIGNUP FORM -->
+        <form id="signup-form" class="auth-form" onsubmit="handleSignupSubmit(event)">
+          <div class="form-group">
+            <label>Full Name</label>
+            <div class="input-icon-wrapper">
+              <span class="field-icon"><i class="fa-solid fa-user"></i></span>
+              <input type="text" required placeholder="Naveen Nethmal" class="form-input with-icon" id="signup-name" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Email Address</label>
+            <div class="input-icon-wrapper">
+              <span class="field-icon"><i class="fa-solid fa-envelope"></i></span>
+              <input type="email" required placeholder="naveen@gmail.com" class="form-input with-icon"
+                id="signup-email" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Phone Number</label>
+            <div class="input-icon-wrapper">
+              <span class="field-icon"><i class="fa-solid fa-phone"></i></span>
+              <input type="tel" required placeholder="+94 77 123 4567" class="form-input with-icon" id="signup-phone" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Create Password</label>
+            <div class="input-icon-wrapper">
+              <span class="field-icon"><i class="fa-solid fa-lock"></i></span>
+              <input type="password" required placeholder="Minimum 6 characters" class="form-input with-icon"
+                id="signup-password" />
+              <button type="button" class="toggle-password-btn"
+                onclick="togglePasswordVisibility('signup-password', this)"><i class="fa-solid fa-eye"></i></button>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-auth-submit">
+            <span>Create My Account</span> <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </form>
+
+        <!-- Social Auth Options -->
+        <div class="social-auth-divider">
+          <span>Or continue with</span>
+        </div>
+
+        <div class="social-btn-row">
+          <button class="social-auth-btn" onclick="cartManager.showToast('Google Sign-In ready!')">
+            <span class="social-icon"><i class="fa-brands fa-google"></i></span> Google
+          </button>
+          <button class="social-auth-btn" onclick="cartManager.showToast('Apple ID Sign-In ready!')">
+            <span class="social-icon"><i class="fa-brands fa-apple"></i></span> Apple
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOAST NOTIFICATIONS CONTAINER -->
+    <div id="toast-container"></div>
+
+
+    <!-- SITE FOOTER -->
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-top-grid">
+          <div class="footer-col">
+            <div class="brand-logo" style="margin-bottom: 12px;">
+              <div class="brand-icon-wrap">
+                <svg class="brand-svg-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <linearGradient id="logoBgFooter" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+                      <stop offset="0%" stop-color="#FF9E00" />
+                      <stop offset="50%" stop-color="#E85D04" />
+                      <stop offset="100%" stop-color="#DC2626" />
+                    </linearGradient>
+                    <linearGradient id="chefHatGradFooter" x1="0" y1="0" x2="0" y2="100%">
+                      <stop offset="0%" stop-color="#FFFFFF" />
+                      <stop offset="100%" stop-color="#FFF3C4" />
+                    </linearGradient>
+                    <linearGradient id="boltGradFooter" x1="0" y1="0" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#FFEA00" />
+                      <stop offset="100%" stop-color="#FF9E00" />
+                    </linearGradient>
+                  </defs>
+                  <rect width="44" height="44" rx="13" fill="url(#logoBgFooter)" />
+                  <rect x="0.5" y="0.5" width="43" height="43" rx="12.5" stroke="white" stroke-opacity="0.25" />
+                  <path
+                    d="M14.5 18C14.5 15.7909 16.2909 14 18.5 14C19.2483 14 19.9482 14.2057 20.5484 14.5638C21.4391 13.5939 22.7231 13 24 13C25.2769 13 26.5609 13.5939 27.4516 14.5638C28.0518 14.2057 28.7517 14 29.5 14C31.7091 14 33.5 15.7909 33.5 18C33.5 19.1245 33.0371 20.141 32.2909 20.8718C32.7423 21.6703 33 22.5839 33 23.5C33 25.433 31.433 27 29.5 27H18.5C16.567 27 15 25.433 15 23.5C15 22.5839 15.2577 21.6703 15.7091 20.8718C14.9629 20.141 14.5 19.1245 14.5 18Z"
+                    fill="url(#chefHatGradFooter)" />
+                  <path
+                    d="M16.5 27.5H31.5V30.5C31.5 31.6046 30.6046 32.5 29.5 32.5H18.5C17.3954 32.5 16.5 31.6046 16.5 30.5V27.5Z"
+                    fill="url(#chefHatGradFooter)" />
+                  <path d="M26 21L20.5 28.5H24.5L23 34L28.5 26.5H24.5L26 21Z" fill="url(#boltGradFooter)" />
+                </svg>
+              </div>
+              <div class="brand-info">
+                <div class="brand-name-row">
+                  <span class="brand-name-food">Food</span>
+                  <span class="brand-name-express">Express</span>
+                  <span class="brand-speed-tag"><i class="fa-solid fa-bolt"></i></span>
+                </div>
+                <span class="brand-slogan"><span class="slogan-pulse"></span> DELICIOUS & FAST DELIVERY</span>
+              </div>
+            </div>
+            <p style="font-size: 12px; color: #9CA3AF; max-width: 260px; line-height: 1.5;">
+              Connecting food lovers with the best local restaurants. Fast, safe, and hot food delivery to your
+              doorstep.
+            </p>
+          </div>
+
+          <!-- Column 2: Quick Links -->
+          <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="#home" onclick="router.navigateTo('home')">Home</a></li>
+              <li><a href="#menu" onclick="router.navigateTo('menu')">Menu</a></li>
+              <li><a href="#offers" onclick="router.navigateTo('offers')">Offers</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 3: Company -->
+          <div class="footer-col">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="#about" onclick="router.navigateTo('about')">About Us</a></li>
+              <li><a href="#contact" onclick="router.navigateTo('contact')">Contact Us</a></li>
+              <li><a href="#" onclick="cartManager.showToast('FAQ section')">FAQs</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 4: Support -->
+          <div class="footer-col">
+            <h4>Support</h4>
+            <ul>
+              <li><a href="#contact" onclick="router.navigateTo('contact')">Help Center</a></li>
+              <li><a href="#contact" onclick="router.navigateTo('contact')">Terms & Conditions</a></li>
+              <li><a href="#contact" onclick="router.navigateTo('contact')">Privacy Policy</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 5: Follow Us -->
+          <div class="footer-col">
+            <h4>Follow Us</h4>
+            <div class="social-links-row">
+              <a href="#" title="Facebook" style="color:#9CA3AF;"><i class="fa-brands fa-facebook"></i></a>
+              <a href="#" title="Instagram" style="color:#9CA3AF;"><i class="fa-brands fa-instagram"></i></a>
+              <a href="#" title="Twitter" style="color:#9CA3AF;"><i class="fa-brands fa-square-twitter"></i></a>
+              <a href="#" title="YouTube" style="color:#9CA3AF;"><i class="fa-brands fa-square-youtube"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom-row" style="display:flex; align-items:center; justify-content:space-between; padding-top:16px; font-size:12px; color:#6B7280;">
+          <span>© 2024 Food Express. All rights reserved.</span>
+          <div class="footer-links-inline" style="display:flex; gap:14px;">
+            <a href="#contact" onclick="router.navigateTo('contact')" style="color:#6B7280; text-decoration:none;">Privacy Policy</a>
+            <span>|</span>
+            <a href="#contact" onclick="router.navigateTo('contact')" style="color:#6B7280; text-decoration:none;">Terms & Conditions</a>
+            <span>|</span>
+            <a href="#contact" onclick="router.navigateTo('contact')" style="color:#6B7280; text-decoration:none;">Help</a>
+            <span>|</span>
+            <a href="#contact" onclick="router.navigateTo('contact')" style="color:#6B7280; text-decoration:none;">Contact</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/router.js"></script>
+</body>
+
+</html>

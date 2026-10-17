@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="0;url=pages/orders.html">
+  <title>Redirecting to Orders Page...</title>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('payment') === 'success' && urlParams.get('order_id')) {
+      window.location.href = "index.html?payment=success&order_id=" + encodeURIComponent(urlParams.get('order_id')) + "#checkout";
+    } else {
+      window.location.href = "pages/orders.html" + window.location.search;
+    }
+  </script>
+</head>
+<body>
+  <p>Redirecting... If you are not redirected automatically, <a href="pages/orders.html">click here</a>.</p>
+</body>
+</html>

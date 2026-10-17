@@ -1,0 +1,26 @@
+<!-- Cart Section Partial (Sidebar & Full Cart View) -->
+<aside class="cart-sidebar-container" id="cart-sidebar-partial">
+  <div class="cart-sidebar-header">
+    <div class="cart-title-wrap">
+      <span><i class="fa-solid fa-cart-shopping"></i></span> Your Cart
+      <span class="cart-badge-circle cart-count-badge">0</span>
+    </div>
+    <button class="close-mobile-cart" id="close-cart-btn-partial"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+
+  <!-- Dynamic Cart List -->
+  <div class="cart-sidebar-list" id="cart-sidebar-list-partial">
+    <!-- Rendered dynamically -->
+  </div>
+
+  <!-- Cart Footer -->
+  <div class="cart-sidebar-footer">
+    <div class="cart-total-row">
+      <span>Total:</span>
+      <span class="total-amount" id="cart-sidebar-total-partial">Rs. 0.00</span>
+    </div>
+    <button class="btn-checkout" onclick="router.navigateTo('checkout')">
+      <i class="fa-solid fa-cart-shopping"></i> Checkout
+    </button>
+  </div>
+</aside>

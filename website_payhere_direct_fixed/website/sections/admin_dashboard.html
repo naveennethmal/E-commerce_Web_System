@@ -1,0 +1,68 @@
+<!-- Admin Dashboard Section Partial Component -->
+<section id="admin-dashboard-section-partial" class="admin-dashboard-section-partial">
+  <!-- Stats Summary Cards Row -->
+  <div class="stats-overview-grid">
+    <div class="stat-card">
+      <div class="stat-icon icon-red"><i class="fa-solid fa-money-bill-wave"></i></div>
+      <div class="stat-details">
+        <span class="stat-label">Total Revenue</span>
+        <h3 class="stat-value" id="dash-total-revenue">Rs. 0.00</h3>
+        <span class="stat-badge badge-green"><i class="fa-solid fa-arrow-trend-up"></i> Live</span>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon icon-orange"><i class="fa-solid fa-bag-shopping"></i></div>
+      <div class="stat-details">
+        <span class="stat-label">Total Orders</span>
+        <h3 class="stat-value" id="dash-total-orders">0</h3>
+        <span class="stat-badge badge-blue">Updated</span>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon icon-blue"><i class="fa-solid fa-utensils"></i></div>
+      <div class="stat-details">
+        <span class="stat-label">Food Items</span>
+        <h3 class="stat-value" id="dash-total-items">0</h3>
+        <span class="stat-badge badge-neutral">Active</span>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon icon-green"><i class="fa-solid fa-users"></i></div>
+      <div class="stat-details">
+        <span class="stat-label">Customers</span>
+        <h3 class="stat-value" id="dash-total-customers">0</h3>
+        <span class="stat-badge badge-green">Registered</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Actions & Recent Orders Row -->
+  <div class="dashboard-main-grid">
+    <!-- Recent Orders Table Card -->
+    <div class="widget-card flex-2">
+      <div class="widget-header">
+        <h2 class="widget-title"><i class="fa-solid fa-clock-rotate-left"></i> Recent Customer Orders</h2>
+        <a href="index.html#view-orders" class="widget-action-link" onclick="switchAdminTab('orders')">View All →</a>
+      </div>
+      <div class="table-responsive">
+        <table class="admin-data-table">
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Customer</th>
+              <th>Items</th>
+              <th>Total</th>
+              <th>Status</th>
+              <th>Time</th>
+            </tr>
+          </thead>
+          <tbody id="dash-recent-orders-table">
+            <tr>
+              <td colspan="6" class="text-center-empty">Loading recent orders...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

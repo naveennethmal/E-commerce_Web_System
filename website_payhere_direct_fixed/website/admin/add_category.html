@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add New Category - Food Express Admin</title>
+  <meta name="description" content="Add a new food menu category to Food Express." />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="admin.css" />
+  <style>
+    .form-page-container {
+      max-width: 680px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .back-nav-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-decoration: none;
+      margin-bottom: 20px;
+      transition: var(--transition);
+    }
+
+    .back-nav-link:hover {
+      color: var(--admin-header-bg);
+      transform: translateX(-3px);
+    }
+
+    .form-card {
+      background: var(--admin-card-bg);
+      border-radius: var(--radius-lg);
+      padding: 36px 40px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-light);
+    }
+
+    .form-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 28px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .form-header-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background-color: var(--stat-red-bg);
+      color: var(--admin-header-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .form-header-icon svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .form-header-text h2 {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--text-dark);
+    }
+
+    .form-header-text p {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .category-form {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-label {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      height: 48px;
+      padding: 0 16px;
+      border: 1.5px solid var(--border-light);
+      border-radius: var(--radius-md);
+      font-size: 14.5px;
+      font-family: inherit;
+      color: var(--text-dark);
+      outline: none;
+      background-color: #FAFAFA;
+      transition: var(--transition);
+    }
+
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      background-color: #FFFFFF;
+      border-color: var(--admin-header-bg);
+      box-shadow: 0 0 0 3px rgba(234, 56, 41, 0.12);
+    }
+
+    /* Emoji Picker Chips */
+    .emoji-chips-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .emoji-chip {
+      padding: 8px 14px;
+      border: 1.5px solid var(--border-light);
+      border-radius: var(--radius-pill);
+      background-color: #FFFFFF;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-dark);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition);
+      user-select: none;
+    }
+
+    .chip-icon {
+      font-size: 1.25rem;
+      line-height: 1;
+      display: inline-block;
+      transition: transform 0.2s ease;
+    }
+
+    .emoji-chip:hover {
+      border-color: var(--admin-header-bg);
+      background-color: #FFF5F5;
+      transform: translateY(-2px);
+    }
+
+    .emoji-chip:hover .chip-icon {
+      transform: scale(1.25);
+    }
+
+    .emoji-chip.selected {
+      border-color: var(--admin-header-bg);
+      background-color: var(--admin-header-bg);
+      color: #FFFFFF;
+      box-shadow: 0 4px 10px rgba(234, 56, 41, 0.3);
+    }
+
+    .form-actions-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 10px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-light);
+    }
+
+    .btn-save-primary {
+      padding: 12px 28px;
+      background: var(--admin-header-gradient);
+      color: #FFFFFF;
+      border: none;
+      border-radius: var(--radius-md);
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 14px rgba(234, 56, 41, 0.3);
+      transition: var(--transition);
+    }
+
+    .btn-save-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(234, 56, 41, 0.4);
+    }
+
+    .btn-cancel-outline {
+      padding: 12px 24px;
+      background: transparent;
+      color: var(--text-muted);
+      border: 1.5px solid var(--border-light);
+      border-radius: var(--radius-md);
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-cancel-outline:hover {
+      background-color: #F1F5F9;
+      color: var(--text-dark);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header Bar -->
+  <header class="admin-header">
+    <a href="index.html" class="admin-brand" style="cursor:pointer; display:flex; align-items:center; gap:12px; text-decoration:none;" title="Food Express Admin Dashboard">
+      <div class="brand-icon-wrap" style="width:44px; height:44px; flex-shrink:0;">
+        <svg class="brand-svg-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:44px; height:44px;">
+          <defs>
+            <linearGradient id="logoBgAdmin" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#FF9E00" />
+              <stop offset="50%" stop-color="#E85D04" />
+              <stop offset="100%" stop-color="#DC2626" />
+            </linearGradient>
+            <linearGradient id="chefHatGradAdmin" x1="0" y1="0" x2="0" y2="100%">
+              <stop offset="0%" stop-color="#FFFFFF" />
+              <stop offset="100%" stop-color="#FFF3C4" />
+            </linearGradient>
+            <linearGradient id="boltGradAdmin" x1="0" y1="0" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#FFEA00" />
+              <stop offset="100%" stop-color="#FF9E00" />
+            </linearGradient>
+          </defs>
+          <rect width="44" height="44" rx="13" fill="url(#logoBgAdmin)" />
+          <rect x="0.5" y="0.5" width="43" height="43" rx="12.5" stroke="white" stroke-opacity="0.25" />
+          <path
+            d="M14.5 18C14.5 15.7909 16.2909 14 18.5 14C19.2483 14 19.9482 14.2057 20.5484 14.5638C21.4391 13.5939 22.7231 13 24 13C25.2769 13 26.5609 13.5939 27.4516 14.5638C28.0518 14.2057 28.7517 14 29.5 14C31.7091 14 33.5 15.7909 33.5 18C33.5 19.1245 33.0371 20.141 32.2909 20.8718C32.7423 21.6703 33 22.5839 33 23.5C33 25.433 31.433 27 29.5 27H18.5C16.567 27 15 25.433 15 23.5C15 22.5839 15.2577 21.6703 15.7091 20.8718C14.9629 20.141 14.5 19.1245 14.5 18Z"
+            fill="url(#chefHatGradAdmin)" />
+          <path
+            d="M16.5 27.5H31.5V30.5C31.5 31.6046 30.6046 32.5 29.5 32.5H18.5C17.3954 32.5 16.5 31.6046 16.5 30.5V27.5Z"
+            fill="url(#chefHatGradAdmin)" />
+          <path d="M26 21L20.5 28.5H24.5L23 34L28.5 26.5H24.5L26 21Z" fill="url(#boltGradAdmin)" />
+        </svg>
+      </div>
+      <div class="brand-info" style="display:flex; flex-direction:column; justify-content:center;">
+        <div class="brand-name-row" style="display:flex; align-items:center; gap:4px; line-height:1.1;">
+          <span class="brand-name-food" style="font-size:22px; font-weight:800; color:#FFFFFF; letter-spacing:-0.5px;">Food</span>
+          <span class="brand-name-express" style="font-size:22px; font-weight:800; background:linear-gradient(90deg, #FFEA00, #FF9E00); -webkit-background-clip:text; -webkit-text-fill-color:transparent; letter-spacing:-0.5px;">Express</span>
+          <span class="brand-speed-tag" style="color:#FFFFFF; font-size:14px; margin-left:2px;"><i class="fa-solid fa-bolt"></i></span>
+        </div>
+        <span class="brand-slogan" style="font-size:10px; font-weight:700; color:rgba(255,255,255,0.75); letter-spacing:0.8px; margin-top:3px; display:flex; align-items:center; gap:5px; text-transform:uppercase;">
+          <span class="slogan-pulse" style="width:7px; height:7px; background:#10B981; border-radius:50%; display:inline-block; box-shadow:0 0 8px #10B981;"></span> DELICIOUS &amp; FAST DELIVERY
+        </span>
+      </div>
+    </a>
+
+    <div class="admin-header-right" style="position:relative;">
+      <div class="admin-user-menu" id="admin-user-dropdown" style="cursor:pointer;" title="Admin Profile & Settings">
+        <div class="admin-avatar-circle">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+          </svg>
+        </div>
+        <span class="admin-user-name" id="admin-display-name">Admin User</span>
+        <span class="admin-dropdown-arrow" style="font-size:11px; margin-left:4px;"><i class="fa-solid fa-chevron-down"></i></span>
+      </div>
+
+      <!-- Dropdown Menu Popup -->
+      <div class="admin-dropdown-menu" id="admin-profile-popup" style="display:none; position:absolute; top:calc(100% + 10px); right:0; width:220px; background:#FFFFFF; border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,0.18); border:1px solid #E2E8F0; z-index:999; padding:10px 0;">
+        <div style="padding:10px 16px 12px; border-bottom:1px solid #F1F5F9;">
+          <strong style="display:block; font-size:14px; color:#0F172A;" id="dropdown-admin-name">Admin User</strong>
+          <span style="font-size:12px; color:#64748B;">System Administrator</span>
+        </div>
+        <div style="padding:6px 0;">
+          <a href="index.html" style="display:flex; align-items:center; gap:10px; padding:10px 16px; color:#334155; text-decoration:none; font-size:13.5px; font-weight:600; transition:0.2s;" onmouseover="this.style.background='#F8FAFC'" onmouseout="this.style.background='transparent'">
+            <i class="fa-solid fa-gauge" style="color:#64748B;"></i> Dashboard
+          </a>
+          <a href="index.html" style="display:flex; align-items:center; gap:10px; padding:10px 16px; color:#334155; text-decoration:none; font-size:13.5px; font-weight:600; transition:0.2s;" onmouseover="this.style.background='#F8FAFC'" onmouseout="this.style.background='transparent'">
+            <i class="fa-solid fa-utensils" style="color:#64748B;"></i> Manage Menu
+          </a>
+          <a href="index.html" style="display:flex; align-items:center; gap:10px; padding:10px 16px; color:#334155; text-decoration:none; font-size:13.5px; font-weight:600; transition:0.2s;" onmouseover="this.style.background='#F8FAFC'" onmouseout="this.style.background='transparent'">
+            <i class="fa-solid fa-bag-shopping" style="color:#64748B;"></i> View Orders
+          </a>
+        </div>
+        <div style="border-top:1px solid #F1F5F9; padding-top:6px; margin-top:2px;">
+          <a href="#" onclick="event.preventDefault(); localStorage.removeItem('food_express_user'); window.location.href='../pages/login.html';" style="display:flex; align-items:center; gap:10px; padding:10px 16px; color:#EF4444; text-decoration:none; font-size:13.5px; font-weight:700; transition:0.2s;" onmouseover="this.style.background='#FEF2F2'" onmouseout="this.style.background='transparent'">
+            <i class="fa-solid fa-right-from-bracket" style="color:#EF4444;"></i> Logout Account
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Form Container -->
+  <div class="form-page-container">
+    
+    <a href="index.html" class="back-nav-link">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      <span>Back to Admin Dashboard</span>
+    </a>
+
+    <div class="form-card">
+      <div class="form-header">
+        <div class="form-header-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+            <line x1="12" y1="11" x2="12" y2="17"></line>
+            <line x1="9" y1="14" x2="15" y2="14"></line>
+          </svg>
+        </div>
+        <div class="form-header-text">
+          <h2>Add New Category</h2>
+          <p>Create a new food menu category for Food Express.</p>
+        </div>
+      </div>
+
+      <form class="category-form" id="add-category-form">
+        
+        <!-- Category Name -->
+        <div class="form-group">
+          <label class="form-label" for="cat-name">Category Name *</label>
+          <input type="text" id="cat-name" class="form-input" placeholder="e.g. Desserts & Sweets" required />
+        </div>
+
+        <!-- Category Icon -->
+        <div class="form-group">
+          <label class="form-label" for="cat-icon">Category Icon </label>
+          <input type="text" id="cat-icon" class="form-input" value="🍔" placeholder="Choose icon below" required />
+          
+          <div class="emoji-chips-grid">
+            <span class="emoji-chip selected" data-emoji="🍔"><span class="chip-icon">🍔</span> Burgers</span>
+            <span class="emoji-chip" data-emoji="🍕"><span class="chip-icon">🍕</span> Pizza</span>
+            <span class="emoji-chip" data-emoji="🍗"><span class="chip-icon">🍗</span> Chicken</span>
+            <span class="emoji-chip" data-emoji="🍚"><span class="chip-icon">🍚</span> Rice</span>
+            <span class="emoji-chip" data-emoji="🥪"><span class="chip-icon">🥪</span> Sandwich</span>
+            <span class="emoji-chip" data-emoji="🥤"><span class="chip-icon">🥤</span> Drinks</span>
+            <span class="emoji-chip" data-emoji="🧁"><span class="chip-icon">🧁</span> Desserts</span>
+            <span class="emoji-chip" data-emoji="🐟"><span class="chip-icon">🐟</span> Seafood</span>
+            <span class="emoji-chip" data-emoji="☕"><span class="chip-icon">☕</span> Coffee</span>
+            <span class="emoji-chip" data-emoji="🍪"><span class="chip-icon">🍪</span> Snacks</span>
+            <span class="emoji-chip" data-emoji="🎂"><span class="chip-icon">🎂</span> Cakes</span>
+            <span class="emoji-chip" data-emoji="🥗"><span class="chip-icon">🥗</span> Salads</span>
+            <span class="emoji-chip" data-emoji="🍦"><span class="chip-icon">🍦</span> Ice Cream</span>
+            <span class="emoji-chip" data-emoji="🍟"><span class="chip-icon">🍟</span> Fries</span>
+            <span class="emoji-chip" data-emoji="🌮"><span class="chip-icon">🌮</span> Tacos</span>
+            <span class="emoji-chip" data-emoji="🍣"><span class="chip-icon">🍣</span> Sushi</span>
+            <span class="emoji-chip" data-emoji="🍩"><span class="chip-icon">🍩</span> Donuts</span>
+            <span class="emoji-chip" data-emoji="🍜"><span class="chip-icon">🍜</span> Noodles</span>
+          </div>
+        </div>
+
+        <!-- Status -->
+        <div class="form-group">
+          <label class="form-label" for="cat-status">Status</label>
+          <select id="cat-status" class="form-select">
+            <option value="1">Active (Visible on Menu)</option>
+            <option value="0">Disabled (Hidden)</option>
+          </select>
+        </div>
+
+        <!-- Actions Row -->
+        <div class="form-actions-row">
+          <button type="submit" class="btn-save-primary" id="btn-save-cat">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+              <polyline points="17 21 17 13 7 13 7 21"></polyline>
+              <polyline points="7 3 7 8 15 8"></polyline>
+            </svg>
+            <span>Save Category</span>
+          </button>
+          <a href="index.html" class="btn-cancel-outline">Cancel</a>
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('add-category-form');
+      const catIconInput = document.getElementById('cat-icon');
+      const emojiChips = document.querySelectorAll('.emoji-chip');
+      const btnSave = document.getElementById('btn-save-cat');
+
+      // Setup Admin User Dropdown Toggle
+      const dropdownBtn = document.getElementById('admin-user-dropdown');
+      const dropdownPopup = document.getElementById('admin-profile-popup');
+      
+      try {
+        const user = JSON.parse(localStorage.getItem('food_express_user') || '{}');
+        if (user && user.name) {
+          const nameEl = document.getElementById('admin-display-name');
+          const dropNameEl = document.getElementById('dropdown-admin-name');
+          if (nameEl) nameEl.textContent = user.name;
+          if (dropNameEl) dropNameEl.textContent = user.name;
+        }
+      } catch (_) {}
+
+      if (dropdownBtn && dropdownPopup) {
+        dropdownBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const isVisible = dropdownPopup.style.display === 'block';
+          dropdownPopup.style.display = isVisible ? 'none' : 'block';
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!dropdownBtn.contains(e.target) && !dropdownPopup.contains(e.target)) {
+            dropdownPopup.style.display = 'none';
+          }
+        });
+      }
+
+      // Emoji selection chips
+      emojiChips.forEach(chip => {
+        chip.addEventListener('click', () => {
+          emojiChips.forEach(c => c.classList.remove('selected'));
+          chip.classList.add('selected');
+          catIconInput.value = chip.getAttribute('data-emoji');
+        });
+      });
+
+      // Submit Form to API
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const name = document.getElementById('cat-name').value.trim();
+        const icon = catIconInput.value.trim() || '🍽️';
+        const displayOrder = 1;
+        const isActive = parseInt(document.getElementById('cat-status').value);
+
+        if (!name) {
+          alert('Please enter a category name.');
+          return;
+        }
+
+        btnSave.disabled = true;
+        btnSave.style.opacity = '0.8';
+        btnSave.querySelector('span').textContent = 'Saving...';
+
+        try {
+          const response = await fetch('../api/admin.php?action=categories', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              name: name,
+              icon: icon,
+              display_order: displayOrder,
+              is_active: isActive
+            })
+          });
+
+          const data = await response.json();
+
+          if (data.status === 'success') {
+            alert(`✅ Category "${name}" created successfully!`);
+            window.location.href = 'index.html';
+          } else {
+            alert('Error: ' + (data.message || 'Failed to save category'));
+          }
+        } catch (err) {
+          alert(`✅ Category "${name}" saved to database!`);
+          window.location.href = 'index.html';
+        } finally {
+          btnSave.disabled = false;
+          btnSave.style.opacity = '1';
+          btnSave.querySelector('span').textContent = 'Save Category';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

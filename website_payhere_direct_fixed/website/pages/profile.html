@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Profile | Food Express ⚡ Delicious & Fast Delivery</title>
+  <meta name="description"
+    content="View and manage your Food Express user account profile, delivery addresses, and order statistics.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/pages.css">
+
+  <style>
+    :root {
+      --primary-red: #EA3829;
+      --primary-orange: #FF9E00;
+      --dark-navy: #0F172A;
+      --slate-grey: #64748B;
+      --light-bg: #F8FAFC;
+      --border-color: #E2E8F0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #F1F5F9;
+      color: var(--dark-navy);
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+
+    /* Container & Layout */
+    .profile-main-container {
+      max-width: 900px;
+      margin: 36px auto;
+      padding: 0 20px;
+    }
+
+    /* Hero Banner Card */
+    .profile-hero-card {
+      background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+      border-radius: 24px;
+      padding: 32px;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .profile-hero-card::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(255, 158, 0, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .user-hero-info {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      z-index: 1;
+    }
+
+    .user-avatar-large {
+      width: 84px;
+      height: 84px;
+      background: linear-gradient(135deg, #FF9E00, #EA3829);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      color: #FFFFFF;
+      box-shadow: 0 8px 24px rgba(234, 56, 41, 0.4);
+      border: 4px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .user-hero-details h1 {
+      margin: 0;
+      font-family: 'Outfit', sans-serif;
+      font-size: 26px;
+      font-weight: 800;
+    }
+
+    .user-hero-details p {
+      margin: 4px 0 0 0;
+      color: #94A3B8;
+      font-size: 14px;
+    }
+
+    .role-pill-badge {
+      display: inline-block;
+      margin-top: 10px;
+      background: rgba(255, 158, 0, 0.2);
+      color: #FFB703;
+      border: 1px solid rgba(255, 158, 0, 0.4);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 3px 12px;
+      border-radius: 9999px;
+    }
+
+    /* Grid Section */
+    .profile-grid-section {
+      display: grid;
+      grid-template-columns: 1.8fr 1fr;
+      gap: 24px;
+      margin-top: 28px;
+    }
+
+    @media (max-width: 768px) {
+      .profile-grid-section {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-hero-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+      }
+
+      .user-hero-info {
+        flex-direction: column;
+      }
+    }
+
+    /* Content Card */
+    .info-card {
+      background: #FFFFFF;
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+      border: 1px solid var(--border-color);
+    }
+
+    .card-header-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #F1F5F9;
+    }
+
+    .card-header-title i {
+      font-size: 20px;
+      color: var(--primary-red);
+    }
+
+    .card-header-title h2 {
+      margin: 0;
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--dark-navy);
+    }
+
+    /* Detail Field Row */
+    .detail-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 16px;
+      background: #F8FAFC;
+      border-radius: 14px;
+      margin-bottom: 12px;
+      border: 1px solid #F1F5F9;
+    }
+
+    .detail-icon-wrap {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .icon-red {
+      background: #FFF0F0;
+      color: #EA3829;
+    }
+
+    .icon-blue {
+      background: #EFF6FF;
+      color: #3B82F6;
+    }
+
+    .icon-green {
+      background: #F0FDF4;
+      color: #10B981;
+    }
+
+    .icon-purple {
+      background: #F3E8FF;
+      color: #9333EA;
+    }
+
+    .icon-amber {
+      background: #FEF3C7;
+      color: #D97706;
+    }
+
+    .detail-content {
+      flex: 1;
+    }
+
+    .detail-label {
+      font-size: 11.5px;
+      color: var(--slate-grey);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .detail-value {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: #1E293B;
+      word-break: break-all;
+    }
+
+    /* Stats Widget Cards */
+    .stat-widget-card {
+      background: #FFFFFF;
+      border-radius: 18px;
+      padding: 18px;
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 14px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    }
+
+    .stat-badge-num {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--primary-red);
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .stat-label-text {
+      font-size: 12px;
+      color: var(--slate-grey);
+      font-weight: 600;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <!-- Logo -->
+      <a href="../index.html#home" class="brand-logo">
+        <div class="brand-icon-wrap">
+          <svg class="brand-svg-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="logoBg" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#FF9E00" />
+                <stop offset="50%" stop-color="#E85D04" />
+                <stop offset="100%" stop-color="#DC2626" />
+              </linearGradient>
+              <linearGradient id="chefHatGrad" x1="0" y1="0" x2="0" y2="100%">
+                <stop offset="0%" stop-color="#FFFFFF" />
+                <stop offset="100%" stop-color="#FFF3C4" />
+              </linearGradient>
+              <linearGradient id="boltGrad" x1="0" y1="0" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#FFEA00" />
+                <stop offset="100%" stop-color="#FF9E00" />
+              </linearGradient>
+            </defs>
+            <rect width="44" height="44" rx="13" fill="url(#logoBg)" />
+            <rect x="0.5" y="0.5" width="43" height="43" rx="12.5" stroke="white" stroke-opacity="0.25" />
+            <path
+              d="M14.5 18C14.5 15.7909 16.2909 14 18.5 14C19.2483 14 19.9482 14.2057 20.5484 14.5638C21.4391 13.5939 22.7231 13 24 13C25.2769 13 26.5609 13.5939 27.4516 14.5638C28.0518 14.2057 28.7517 14 29.5 14C31.7091 14 33.5 15.7909 33.5 18C33.5 19.1245 33.0371 20.141 32.2909 20.8718C32.7423 21.6703 33 22.5839 33 23.5C33 25.433 31.433 27 29.5 27H18.5C16.567 27 15 25.433 15 23.5C15 22.5839 15.2577 21.6703 15.7091 20.8718C14.9629 20.141 14.5 19.1245 14.5 18Z"
+              fill="url(#chefHatGrad)" />
+            <path
+              d="M16.5 27.5H31.5V30.5C31.5 31.6046 30.6046 32.5 29.5 32.5H18.5C17.3954 32.5 16.5 31.6046 16.5 30.5V27.5Z"
+              fill="url(#chefHatGrad)" />
+            <path d="M26 21L20.5 28.5H24.5L23 34L28.5 26.5H24.5L26 21Z" fill="url(#boltGrad)" />
+          </svg>
+        </div>
+        <div class="brand-info">
+          <div class="brand-name-row">
+            <span class="brand-name-food">Food</span>
+            <span class="brand-name-express">Express</span>
+            <span class="brand-speed-tag"><i class="fa-solid fa-bolt"></i></span>
+          </div>
+          <span class="brand-slogan"><span class="slogan-pulse"></span> DELICIOUS &amp; FAST DELIVERY</span>
+        </div>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav class="nav-menu">
+        <a href="../index.html#home" class="nav-link active">
+          <span><i class="fa-solid fa-house"></i></span> Home
+        </a>
+        <a href="../index.html#menu" class="nav-link">
+          <span><i class="fa-solid fa-utensils"></i></span> Menu
+        </a>
+        <a href="../index.html#offers" class="nav-link">
+          <span><i class="fa-solid fa-tags"></i></span> Offers
+        </a>
+        <a href="../index.html#about" class="nav-link">
+          <span><i class="fa-solid fa-info-circle"></i></span> About
+        </a>
+        <a href="contact.html" class="nav-link">
+          <span><i class="fa-solid fa-envelope"></i></span> Contact
+        </a>
+        <a href="../index.html#cart" class="nav-link">
+          <span><i class="fa-solid fa-cart-shopping"></i></span> Cart
+        </a>
+      </nav>
+
+      <!-- Search Bar -->
+      <div class="search-wrapper">
+        <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+        <input type="text" class="search-input" placeholder="Search for food..."
+          onkeydown="if(event.key==='Enter') window.location.href='../index.html#menu';" />
+      </div>
+
+      <!-- Header Actions -->
+      <div class="header-right-actions">
+        <!-- Notification Bell Wrapper -->
+        <div class="notif-dropdown-wrapper" style="position:relative;">
+          <button class="icon-btn notif-btn" id="notif-toggle-btn" title="Notifications">
+            <span><i class="fa-solid fa-bell"></i></span>
+            <span class="badge-count-red" id="notif-badge-count" style="display:none;">0</span>
+          </button>
+
+          <!-- Notifications Popover Card -->
+          <div class="notif-popover-card" id="notif-popover-card"
+            style="display:none; position:absolute; top:calc(100% + 12px); right:0; width:320px; background:#FFFFFF; border-radius:16px; box-shadow:0 12px 35px rgba(0,0,0,0.18); border:1px solid #E2E8F0; z-index:999; overflow:hidden;">
+            <div
+              style="padding:14px 18px; border-bottom:1px solid #F1F5F9; display:flex; align-items:center; justify-content:space-between; background:#FAFBFD;">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <i class="fa-solid fa-bell" style="color:#EA3829; font-size:16px;"></i>
+                <strong style="font-size:15px; color:#0F172A;">Notifications</strong>
+                <span id="notif-header-count"
+                  style="background:#FFF0F0; color:#EF4444; font-size:11px; font-weight:700; padding:2px 8px; border-radius:9999px;">0</span>
+              </div>
+              <button id="clear-all-notifs"
+                style="background:none; border:none; color:#64748B; font-size:12px; font-weight:600; cursor:pointer; padding:2px 6px; border-radius:6px;"
+                onmouseover="this.style.color='#EF4444'" onmouseout="this.style.color='#64748B'">Clear all</button>
+            </div>
+
+            <!-- Notification List Container -->
+            <div id="notif-list-container" style="max-height:340px; overflow-y:auto; padding:4px 0;">
+              <div id="notif-empty-state" style="padding:30px 20px; text-align:center; color:#94A3B8;">
+                <i class="fa-regular fa-bell-slash"
+                  style="font-size:32px; color:#CBD5E1; margin-bottom:8px; display:block;"></i>
+                <span style="font-size:13px; font-weight:500;">No new notifications</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Profile Dropdown Wrapper -->
+        <div class="profile-dropdown-wrapper" id="profile-dropdown-wrapper">
+          <button class="profile-avatar-trigger active" id="profile-trigger-btn" title="User Profile">
+            <div class="avatar-circle-purple">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+              </svg>
+            </div>
+            <span class="dropdown-chevron-arrow"><i class="fa-solid fa-chevron-down"></i></span>
+          </button>
+
+          <!-- Profile Popover Card -->
+          <div class="profile-popover-card" id="profile-popover-card">
+            <div class="popover-top-arrow"></div>
+
+            <!-- User Banner -->
+            <div class="user-profile-banner">
+              <div class="banner-avatar-wrap">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                </svg>
+              </div>
+              <div class="banner-user-info">
+                <h4 class="user-display-name" id="popover-user-name">Naveen Nethmal</h4>
+                <span class="user-display-email" id="popover-user-email">nnethmal8@gmail.com</span>
+              </div>
+            </div>
+
+            <!-- Menu List -->
+            <div class="popover-menu-list">
+              <a href="profile.html" class="popover-menu-item">
+                <div class="menu-item-left">
+                  <svg class="menu-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                  <span>My Profile</span>
+                </div>
+                <span class="item-chevron"><i class="fa-solid fa-chevron-right"></i></span>
+              </a>
+
+              <a href="orders.html" class="popover-menu-item">
+                <div class="menu-item-left">
+                  <svg class="menu-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <path d="M16 10a4 4 0 0 1-8 0"></path>
+                  </svg>
+                  <span>My Orders</span>
+                </div>
+                <span class="item-chevron"><i class="fa-solid fa-chevron-right"></i></span>
+              </a>
+
+              <a href="favorites.html" class="popover-menu-item">
+                <div class="menu-item-left">
+                  <svg class="menu-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path
+                      d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                    </path>
+                  </svg>
+                  <span>Favorites</span>
+                </div>
+                <span class="item-chevron"><i class="fa-solid fa-chevron-right"></i></span>
+              </a>
+            </div>
+
+            <!-- Logout Button -->
+            <button class="popover-logout-btn" onclick="logoutUser()">
+              <svg class="logout-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                <polyline points="16 17 21 12 16 7"></polyline>
+                <line x1="21" y1="12" x2="9" y2="12"></line>
+              </svg>
+              <span>Logout</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Profile Container -->
+  <main class="profile-main-container">
+
+    <!-- Hero Card Banner -->
+    <div class="profile-hero-card">
+      <div class="user-hero-info">
+        <div class="user-avatar-large">
+          <i class="fa-solid fa-user-astronaut"></i>
+        </div>
+        <div class="user-hero-details">
+          <h1 id="hero-user-name">Loading Profile...</h1>
+          <p id="hero-user-email">Please wait...</p>
+          <span class="role-pill-badge" id="hero-role-badge">Verified Member</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Details & Stats Grid -->
+    <div class="profile-grid-section">
+
+      <!-- Left Column: Registration Information -->
+      <div class="info-card">
+        <div class="card-header-title">
+          <i class="fa-solid fa-id-card"></i>
+          <h2>Registration &amp; Account Information</h2>
+        </div>
+
+        <!-- Full Name -->
+        <div class="detail-row">
+          <div class="detail-icon-wrap icon-red">
+            <i class="fa-solid fa-user"></i>
+          </div>
+          <div class="detail-content">
+            <span class="detail-label">Full Name</span>
+            <span class="detail-value" id="val-user-name">Loading...</span>
+          </div>
+        </div>
+
+        <!-- Email Address -->
+        <div class="detail-row">
+          <div class="detail-icon-wrap icon-blue">
+            <i class="fa-solid fa-envelope"></i>
+          </div>
+          <div class="detail-content">
+            <span class="detail-label">Registered Email Address</span>
+            <span class="detail-value" id="val-user-email">Loading...</span>
+          </div>
+        </div>
+
+        <!-- Phone Number -->
+        <div class="detail-row">
+          <div class="detail-icon-wrap icon-green">
+            <i class="fa-solid fa-phone"></i>
+          </div>
+          <div class="detail-content">
+            <span class="detail-label">Contact Phone Number</span>
+            <span class="detail-value" id="val-user-phone">Not Provided</span>
+          </div>
+        </div>
+
+        <!-- Delivery Address -->
+        <div class="detail-row">
+          <div class="detail-icon-wrap icon-amber">
+            <i class="fa-solid fa-location-dot"></i>
+          </div>
+          <div class="detail-content">
+            <span class="detail-label">Primary Delivery Address</span>
+            <span class="detail-value" id="val-user-address">No Address Found</span>
+          </div>
+        </div>
+
+        <!-- Joined Date -->
+        <div class="detail-row">
+          <div class="detail-icon-wrap icon-purple">
+            <i class="fa-solid fa-calendar-check"></i>
+          </div>
+          <div class="detail-content">
+            <span class="detail-label">Account Registration Date</span>
+            <span class="detail-value" id="val-user-joined">2026</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Account Stats & Shortcuts -->
+      <div>
+        <div class="info-card" style="margin-bottom: 20px;">
+          <div class="card-header-title">
+            <i class="fa-solid fa-chart-pie"></i>
+            <h2>Account Overview</h2>
+          </div>
+
+          <div class="stat-widget-card">
+            <div class="stat-badge-num" id="stat-total-orders">0</div>
+            <div>
+              <div style="font-weight: 700; font-size: 14px;">Total Orders</div>
+              <div class="stat-label-text">Placed with Food Express</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Navigation Shortcuts -->
+        <div class="info-card">
+          <div class="card-header-title">
+            <i class="fa-solid fa-compass"></i>
+            <h2>Quick Actions</h2>
+          </div>
+          <a href="../index.html#menu"
+            style="display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; background: #F8FAFC; border-radius: 12px; border: 1px solid #E2E8F0; text-decoration: none; color: #0F172A; font-weight: 700; font-size: 13.5px; margin-bottom: 10px;">
+            <span><i class="fa-solid fa-utensils" style="color: #EA3829; margin-right: 8px;"></i> Order Food Now</span>
+            <i class="fa-solid fa-chevron-right" style="color: #94A3B8; font-size: 12px;"></i>
+          </a>
+          <button onclick="logoutUser()"
+            style="width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; background: #FFEAEB; border-radius: 14px; border: none; color: #DC2626; font-weight: 700; font-size: 13.5px; cursor: pointer; transition: all 0.2s ease;">
+            <span><i class="fa-solid fa-right-from-bracket" style="margin-right: 8px;"></i> Sign Out of Account</span>
+            <i class="fa-solid fa-chevron-right" style="font-size: 12px; color: #DC2626;"></i>
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-top-grid">
+        <!-- Column 1: Brand Info -->
+        <div class="footer-col brand-col">
+          <div class="brand-logo footer-logo">
+            <div class="brand-icon-wrap">
+              <svg class="brand-svg-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="logoBgFooter" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#FF9E00" />
+                    <stop offset="50%" stop-color="#E85D04" />
+                    <stop offset="100%" stop-color="#DC2626" />
+                  </linearGradient>
+                  <linearGradient id="chefHatGradFooter" x1="0" y1="0" x2="0" y2="100%">
+                    <stop offset="0%" stop-color="#FFFFFF" />
+                    <stop offset="100%" stop-color="#FFF3C4" />
+                  </linearGradient>
+                  <linearGradient id="boltGradFooter" x1="0" y1="0" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#FFEA00" />
+                    <stop offset="100%" stop-color="#FF9E00" />
+                  </linearGradient>
+                </defs>
+                <rect width="44" height="44" rx="13" fill="url(#logoBgFooter)" />
+                <rect x="0.5" y="0.5" width="43" height="43" rx="12.5" stroke="white" stroke-opacity="0.25" />
+                <path
+                  d="M14.5 18C14.5 15.7909 16.2909 14 18.5 14C19.2483 14 19.9482 14.2057 20.5484 14.5638C21.4391 13.5939 22.7231 13 24 13C25.2769 13 26.5609 13.5939 27.4516 14.5638C28.0518 14.2057 28.7517 14 29.5 14C31.7091 14 33.5 15.7909 33.5 18C33.5 19.1245 33.0371 20.141 32.2909 20.8718C32.7423 21.6703 33 22.5839 33 23.5C33 25.433 31.433 27 29.5 27H18.5C16.567 27 15 25.433 15 23.5C15 22.5839 15.2577 21.6703 15.7091 20.8718C14.9629 20.141 14.5 19.1245 14.5 18Z"
+                  fill="url(#chefHatGradFooter)" />
+                <path
+                  d="M16.5 27.5H31.5V30.5C31.5 31.6046 30.6046 32.5 29.5 32.5H18.5C17.3954 32.5 16.5 31.6046 16.5 30.5V27.5Z"
+                  fill="url(#chefHatGradFooter)" />
+                <path d="M26 21L20.5 28.5H24.5L23 34L28.5 26.5H24.5L26 21Z" fill="url(#boltGradFooter)" />
+              </svg>
+            </div>
+            <div class="brand-info">
+              <div class="brand-name-row">
+                <span class="brand-name-food">Food</span>
+                <span class="brand-name-express">Express</span>
+                <span class="brand-speed-tag"><i class="fa-solid fa-bolt"></i></span>
+              </div>
+              <span class="brand-slogan"><span class="slogan-pulse"></span> DELICIOUS &amp; FAST DELIVERY</span>
+            </div>
+          </div>
+          <p style="font-size: 12px; color: #9CA3AF; max-width: 260px; line-height: 1.5; margin-top: 10px;">
+            Connecting food lovers with the best local restaurants. Fast, safe, and hot food delivery to your doorstep.
+          </p>
+        </div>
+
+        <!-- Column 2: Quick Links -->
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="../index.html#home">Home</a></li>
+            <li><a href="../index.html#menu">Menu</a></li>
+            <li><a href="../index.html#offers">Offers</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Company -->
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="../index.html#about">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="../index.html#home">FAQs</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Support -->
+        <div class="footer-col">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="contact.html">Help Center</a></li>
+            <li><a href="contact.html">Terms &amp; Conditions</a></li>
+            <li><a href="contact.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 5: Follow Us -->
+        <div class="footer-col">
+          <h4>Follow Us</h4>
+          <div class="social-links-row">
+            <a href="#" title="Facebook" style="color:#9CA3AF;"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#" title="Instagram" style="color:#9CA3AF;"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" title="Twitter" style="color:#9CA3AF;"><i class="fa-brands fa-square-twitter"></i></a>
+            <a href="#" title="YouTube" style="color:#9CA3AF;"><i class="fa-brands fa-square-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom-row"
+        style="display:flex; align-items:center; justify-content:space-between; padding-top:16px; font-size:12px; color:#6B7280;">
+        <span>© 2024 Food Express. All rights reserved.</span>
+        <div class="footer-links-inline" style="display:flex; gap:14px;">
+          <a href="contact.html" style="color:#6B7280; text-decoration:none;">Privacy Policy</a>
+          <span>|</span>
+          <a href="contact.html" style="color:#6B7280; text-decoration:none;">Help Center</a>
+          <span>|</span>
+          <a href="contact.html" style="color:#6B7280; text-decoration:none;">Help</a>
+          <span>|</span>
+          <a href="contact.html" style="color:#6B7280; text-decoration:none;">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      loadUserProfileData();
+    });
+
+    async function loadUserProfileData() {
+      const userJson = localStorage.getItem('food_express_user');
+      if (!userJson) {
+        // Redirect to login if user not logged in
+        window.location.href = 'login.html';
+        return;
+      }
+
+      try {
+        const user = JSON.parse(userJson);
+        const userId = user.id || '';
+        const email = user.email || '';
+
+        // Helper to extract clean address string exactly as registered
+        const resolveAddress = (obj) => {
+          if (!obj) return '';
+          let str = '';
+          if (typeof obj === 'string') str = obj.trim();
+          else if (typeof obj === 'object') {
+            const line = (obj.address_line || obj.address || '').trim();
+            const city = (obj.city || '').trim();
+            str = (city && city.toLowerCase() !== 'colombo') ? `${line}, ${city}` : line;
+          }
+          return str.replace(/^[\s,]+|[\s,]+$/g, '');
+        };
+
+        const initialAddr = resolveAddress(user.address) || resolveAddress(user.saved_address);
+
+        // Display initial local data
+        updateDOM(user.name, user.email, user.phone, user.role, initialAddr || 'No saved delivery address', '0', '2026');
+
+        // Fetch full registration profile from MySQL database API
+        const response = await fetch(`../api/auth.php?action=profile&id=${encodeURIComponent(userId)}&email=${encodeURIComponent(email)}`);
+        const data = await response.json();
+
+        if (response.ok && data.status === 'success' && data.user) {
+          const u = data.user;
+          const phone = u.phone || (u.address && typeof u.address === 'object' ? u.address.phone : '') || user.phone || 'Not Provided';
+          const role = u.role === 'admin' ? 'System Administrator' : 'Registered Customer';
+
+          let addrStr = resolveAddress(u.address) || resolveAddress(u.saved_address) || initialAddr;
+          addrStr = addrStr.replace(/^[\s,]+|[\s,]+$/g, '');
+
+          const totalOrders = u.total_orders || 0;
+          const joinedDate = u.created_at ? new Date(u.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : '2026';
+
+          updateDOM(u.name, u.email, phone, role, addrStr || 'No saved delivery address', totalOrders, joinedDate);
+        }
+      } catch (err) {
+        console.error('Failed to load profile data:', err);
+      }
+    }
+
+    function updateDOM(name, email, phone, role, address, totalOrders, joinedDate) {
+      document.getElementById('hero-user-name').textContent = name || 'User';
+      document.getElementById('hero-user-email').textContent = email || 'N/A';
+      document.getElementById('hero-role-badge').textContent = role || 'Verified Customer';
+
+      document.getElementById('val-user-name').textContent = name || 'N/A';
+      document.getElementById('val-user-email').textContent = email || 'N/A';
+      document.getElementById('val-user-phone').textContent = phone || 'Not Provided';
+      document.getElementById('val-user-address').textContent = address || 'No saved address';
+      document.getElementById('val-user-joined').textContent = joinedDate || '2026';
+
+      document.getElementById('stat-total-orders').textContent = totalOrders || '0';
+    }
+
+    function logoutUser() {
+      localStorage.removeItem('food_express_user');
+      window.location.href = 'login.html';
+    }
+  </script>
+  <script src="../js/header.js"></script>
+</body>
+
+</html>
